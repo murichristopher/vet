@@ -1,0 +1,25 @@
+<section class="d-flex flex-column min-vh-100">
+  <div class="d-flex m-auto shadow-lg p-5 flex-column col-lg-3 col-sm-6">
+    <h3 class="mb-3">Log in</h3>
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <%= render 'devise/shared/error_messages', resource: resource %>
+      <div class="row g-2 mb-2">
+        <div class="field form-floating">
+          <%= f.number_field :email, autocomplete: 'email', class: 'form-control', placeholder: 'joao@userubis.com.br' %>
+          <%= f.label :id %>
+        </div>
+        <div class="field form-floating">
+          <%= f.email_field :email, autocomplete: 'email', class: 'form-control', placeholder: 'joao@userubis.com.br' %>
+          <%= f.label :email %>
+        </div>
+        <div class="field form-floating">
+          <%= f.password_field :password, autocomplete: 'password', class: 'form-control', placeholder: 'joao@userubis.com.br' %>
+          <%= f.label :password %>
+        </div>
+      </div>
+      <div class="actions">
+        <%= f.submit "Fazer login", class: 'col-lg-12 btn btn-primary btn-lg fw-bolder mt-2' %>
+      </div>
+    <% end %>
+  </div>
+</section>

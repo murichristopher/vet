@@ -1,0 +1,34 @@
+<div class="landing-all">
+    <header class="cabecalho">
+        <img class="cabecalho-logo" src="logoaxo.png" alt="logo da empresa">
+        <nav class="cabecalho-menu">
+            <a class="cabecalho-menu-item">Axo</a>
+            <a class="cabecalho-menu-item">Quem somos?</a>
+        </nav>
+    </header>
+
+    <main class="conteudo">
+        <section class="conteudo-principal">
+            <div class="conteudo-principal-escrito">
+                <h1 class="conteudo-principal-escrito-titulo"> Axo </h1>
+                <h2 class="conteudo-principal-escrito-subtitulo"> Um site para interação social entre alunos da etec.</h2>
+                <button class="conteudo-principal-escrito-botao">
+                <%= link_to "Login", new_user_session_path, class: "btn btn-primary" %> </button>
+            </div>
+            <img class="conteudo-principal-imagem" src="axinho.png">
+        </section>
+
+        <section class="conteudo-secundario">
+            <h3 class="conteudo-secundario-titulo"> <strong>O que é o axo?</strong> </h3>
+            <p class="conteudo-secundario-paragrafo"> 1 - A primeira criação da axoverse, com o intuito de ajudar na socialização de alunos da etec. </p>
+            <p class="conteudo-secundario-paragrafo"> 2 - Com uma interface intuitiva, o usuário pode encontrar facilmente outros alunos com os mesmos gostos. </p>
+            <p class="conteudo-secundario-paragrafo"> 3 - O site conta com um sistema de chat quando ambos os alunos se interessam um no outro,</p>
+        </section>
+    </main>
+
+    <footer class="rodape">
+        <!-- <img class="rodape-imagem" src="logoaxo.png" id="rodape"> -->
+        <p class="gradient"> Axoverse </p>
+    </footer>
+
+</div>
