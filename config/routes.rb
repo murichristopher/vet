@@ -16,9 +16,9 @@ Rails.application.routes.draw do
     get "/users/new" => "devise/sessions#new"
   end
 
-  unauthenticated do
-    root to: 'landing_page#index'
-  end
+  # unauthenticated do
+  #   root to: 'landing_page#index'
+  # end
 
   # match '*path', to: redirect('/'), via: :all
 end
