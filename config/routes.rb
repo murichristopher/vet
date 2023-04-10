@@ -12,5 +12,5 @@ Rails.application.routes.draw do
 
   root "landing_page#index"
 
-  match '*path', to: redirect('/'), via: :all
+  # match '*path', to: redirect('/'), via: :all
 end
