@@ -242,6 +242,7 @@ DEPENDENCIES
   devise
   jbuilder
   jsbundling-rails
+  matrix
   pg (~> 1.1)
   prawn-rails
   prawn-table
