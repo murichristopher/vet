@@ -8,6 +8,9 @@ ruby "3.1.0"
 # [DEVISE] Please review the [changelog] and [upgrade guide] for more info on Hotwire / Turbo integration.
 gem "devise"
 
+gem 'prawn-rails'
+gem 'prawn-table'
+
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.0.4", ">= 7.0.4.3"
 

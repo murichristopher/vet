@@ -1,0 +1,35 @@
+<%= form_with(model: customer, class: "mt-5") do |form| %>
+<% if customer.errors.any? %>
+<div class="alert alert-danger">
+  <ul class="mb-0">
+    <% customer.errors.each do |error| %>
+      <li><%= error.full_message %></li>
+    <% end %>
+  </ul>
+</div>
+
+<% end %>
+  <div class="mb-3">
+    <%= form.label "Nome completo", class: "form-label" %>
+    <%= form.text_field :full_name, class: "form-control" %>
+  </div>
+  <div class="mb-3">
+    <%= form.label "CPF", class: "form-label" %>
+    <%= form.text_field :registry_code, class: "form-control" %>
+  </div>
+  <div class="mb-3">
+    <%= form.label "RG", class: "form-label" %>
+    <%= form.text_field :identification_code, class: "form-control" %>
+  </div>
+  <div class="mb-3">
+    <%= form.label "CEP", class: "form-label" %>
+    <%= form.text_field :zip_code, class: "form-control" %>
+  </div>
+  <div class="mb-3">
+    <%= form.label "Numero de telefone", class: "form-label" %>
+    <%= form.text_field :phone_number, class: "form-control" %>
+  </div>
+  <div class="d-grid gap-2">
+    <%= form.submit "Salvar", class: "btn btn-success mt-3" %>
+  </div>
+<% end %>

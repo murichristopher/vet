@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
   authenticated :user do
     root to: 'dashboard#index', as: :authenticated_root
+    resources :customers, only: %i[index show new create edit update destroy]
   end
 
   root "landing_page#index"
