@@ -10,7 +10,9 @@ Rails.application.routes.draw do
     resources :customers, only: %i[index show new create edit update destroy]
   end
 
-  root "landing_page#index"
+  unauthenticated do
+    root to: 'landing_page#index'
+  end
 
   # match '*path', to: redirect('/'), via: :all
 end
