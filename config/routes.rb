@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   #   root to: 'dashboard#index', as: :authenticated_root
   #   resources :customers, only: %i[index show new create edit update destroy]
   # end
+  root 'devise/sessions#new', as: :unauthenticated_root
 
   # unauthenticated do
   #   root to: 'landing_page#index'
