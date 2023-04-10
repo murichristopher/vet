@@ -124,7 +124,8 @@ body {
 .rodape {
    padding: 32px;
    border-top: 0.4px solid #FFF2E7;
-   color: #706e6e
+   color: #706e6e;
+   color: rgb(79, 130, 247)
 }
 
 
@@ -140,3 +141,4 @@ body {
    padding-left: 24%;
    padding-right: 20%;
  }
+

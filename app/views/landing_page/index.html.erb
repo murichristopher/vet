@@ -1,34 +1,151 @@
-<div class="landing-all">
-    <header class="cabecalho">
-        <img class="cabecalho-logo" src="logoaxo.png" alt="logo da empresa">
-        <nav class="cabecalho-menu">
-            <a class="cabecalho-menu-item">Axo</a>
-            <a class="cabecalho-menu-item">Quem somos?</a>
-        </nav>
-    </header>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistema de Gestão de Hospital Veterinário</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    .hero-image {
+      background-image: url("hero-image.jpg");
+      background-size: cover;
+      height: 80vh;
+      position: relative;
+      background: #725ac16d
+    }
 
-    <main class="conteudo">
-        <section class="conteudo-principal">
-            <div class="conteudo-principal-escrito">
-                <h1 class="conteudo-principal-escrito-titulo"> Axo </h1>
-                <h2 class="conteudo-principal-escrito-subtitulo"> Um site para interação social entre alunos da etec.</h2>
-                <button class="conteudo-principal-escrito-botao">
-                <%= link_to "Login", new_user_session_path, class: "btn btn-primary" %> </button>
-            </div>
-            <%= image_tag asset_path('opaopa.jpg'), class:'conteudo-principal-imagem'%>
-        </section>
+    .hero-text {
+      text-align: left;
+      position: absolute;
+      top: 50%;
+      left: 5%;
+      transform: translateY(-50%);
+    }
 
-        <section class="conteudo-secundario">
-            <h3 class="conteudo-secundario-titulo"> <strong>O que é o axo?</strong> </h3>
-            <p class="conteudo-secundario-paragrafo"> 1 - A primeira criação da axoverse, com o intuito de ajudar na socialização de alunos da etec. </p>
-            <p class="conteudo-secundario-paragrafo"> 2 - Com uma interface intuitiva, o usuário pode encontrar facilmente outros alunos com os mesmos gostos. </p>
-            <p class="conteudo-secundario-paragrafo"> 3 - O site conta com um sistema de chat quando ambos os alunos se interessam um no outro,</p>
-        </section>
-    </main>
+    .hero-text h1 {
+      font-size: 48px;
+      color: white;
+    }
 
-    <footer class="rodape">
-        <!-- <img class="rodape-imagem" src="logoaxo.png" id="rodape"> -->
-        <p class="gradient"> Axoverse </p>
-    </footer>
+    .hero-text p {
+      font-size: 24px;
+      color: white;
+      max-width: 70%;
+    }
 
+    .logo {
+        width: 50px
+    }
+
+    .navbar {
+        background: white !important;
+        color: black !important
+    }
+
+    .btn-primary {
+        background-color: #725ac1 !important;
+        border-color: #725ac1 !important;
+    }
+
+    .bg-primary {
+        background-color: #725ac1 !important;
+        border-color: #725ac1 !important;
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg">
+    <a class="navbar-brand" href="#">
+    <%= image_tag asset_path('hospitalvet2.png'), class: "logo" %>
+    </a>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item"><%= link_to "Home", root_path, class: "nav-link" %></li>
+        <li class="nav-item"><%= link_to "Clientes", customers_path, class: "nav-link" %></li>
+        <li class="nav-item"><%= link_to "Dashboard", "/", class: "nav-link" %></li>
+      </ul>
+      <% if user_signed_in? %>
+        <div class="ml-auto">
+          <span class="text-white">Bem-vindo <%= current_user.name %>!</span>
+          <%= link_to "Sair", destroy_user_session_path(current_user), method: :delete, class: "btn btn-outline-light ml-2" %>
+        </div>
+      <% else %>
+        <%= link_to "Entrar", new_user_session_path, class: "btn btn-primary ml-auto" %>
+      <% end %>
+    </div>
+  </nav>
+
+  <header class="hero-image">
+    <div class="hero-text">
+      <h1>Sistema de Gestão de Hospital Veterinário</h1>
+      <p>Gerencie e organize o seu hospital veterinário com eficiência, rapidez e praticidade, utilizando nosso sistema completo e integrado.</p>
+      <a href="<%= new_user_session_path %>" class="btn btn-primary">Comece agora</a>
+    </div>
+  </header>
+
+  <div class="container mt-5">
+    <h2 class="text-center mb-4">Recursos do Sistema</h2>
+    <div class="row">
+      <!-- Adicione os recursos do seu sistema aqui -->
+    </div>
+  </div>
+
+  <div class="container mt-5">
+    <h2 class="text-center mb-4">Por que escolher o nosso sistema?</h2>
+    <div class="row">
+<div class="col-md-6">
+<div class="card mb-4">
+<div class="card-body">
+<h5 class="card-title">Integração e Eficiência</h5>
+<p class="card-text">Nosso sistema integra todos os processos do seu hospital veterinário, aumentando a eficiência e reduzindo o tempo gasto em tarefas administrativas.</p>
 </div>
+</div>
+<div class="card">
+<div class="card-body">
+<h5 class="card-title">Suporte e Atualizações</h5>
+<p class="card-text">Contamos com uma equipe de suporte dedicada para ajudá-lo a solucionar problemas e garantir que você esteja sempre atualizado com as últimas funcionalidades do sistema.</p>
+</div>
+</div>
+</div>
+<div class="col-md-6">
+<div class="card mb-4">
+<div class="card-body">
+<h5 class="card-title">Segurança e Confiabilidade</h5>
+<p class="card-text">Investimos constantemente em medidas de segurança para garantir a proteção dos dados do seu hospital e a confidencialidade das informações dos seus clientes.</p>
+</div>
+</div>
+<div class="card">
+<div class="card-body">
+<h5 class="card-title">Personalização e Flexibilidade</h5>
+<p class="card-text">Nosso sistema é altamente personalizável e adaptável às necessidades específicas do seu hospital veterinário, permitindo que você gerencie seu negócio da melhor forma possível.</p>
+</div>
+</div>
+</div>
+</div>
+  </div>
+  <footer class="bg-primary py-4 mt-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <p class="text-white">&copy; <%= Time.now.year %> Sistema de Gestão de Hospital Veterinário. Todos os direitos reservados.</p>
+        </div>
+        <div class="col-md-6 text-right">
+          <ul class="list-inline mb-0">
+            <li class="list-inline-item">
+              <a href="#" class="text-white">Facebook</a>
+            </li>
+            <li class="list-inline-item">
+              <a href="#" class="text-white">Twitter</a>
+            </li>
+            <li class="list-inline-item">
+              <a href="#" class="text-white">LinkedIn</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
