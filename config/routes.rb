@@ -12,9 +12,9 @@ Rails.application.routes.draw do
 
   # root 'devise/sessions#new', as: :unauthenticated_root
 
-  devise_scope :user do
-    get "/users/new" => "devise/sessions#new"
-  end
+  # devise_scope :user do
+  #   get "/users/new" => "devise/sessions#new"
+  # end
 
   unauthenticated do
     root to: 'landing_page#index'
