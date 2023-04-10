@@ -1,7 +1,7 @@
 <section class="d-flex flex-column min-vh-100">
   <div class="d-flex m-auto shadow-lg p-5 flex-column col-lg-3 col-sm-6">
     <h3 class="mb-3">Log in</h3>
-    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <%= form_for(resource, as: resource_name, html: {'data-turbo' => "false"}, url: session_path(resource_name) ) do |f|%>
       <%= render 'devise/shared/error_messages', resource: resource %>
       <div class="row g-2 mb-2">
         <div class="field form-floating">
