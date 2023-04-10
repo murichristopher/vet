@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   # root 'devise/sessions#new', as: :unauthenticated_root
 
   devise_scope :user do
-    get "/some/route" => "devise/sessions#new"
+    get "/users/new" => "devise/sessions#new"
   end
 
   # unauthenticated do
