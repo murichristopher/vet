@@ -1,0 +1,29 @@
+version: "2"
+
+services:
+  app:
+    container_name: app
+    build: .
+    command: bash -c 'rm -rf tmp/pids && bin/setup && bundle exec rails server --port 3000 --binding 0.0.0.0'
+    stdin_open: true
+    env_file:
+      - .env
+    ports:
+      - "3000:3000"
+    working_dir: /app
+    depends_on:
+      - db
+    volumes:
+      - .:/app
+
+  db:
+    container_name: postgres
+    image: postgres
+    env_file:
+      - .env
+    volumes:
+      - ./tmp/db:/var/lib/postgresql/data
+    environment:
+      POSTGRES_HOST_AUTH_METHOD: trust
+    ports:
+      - "5432:5432"

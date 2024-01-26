@@ -4,7 +4,6 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "articles#index"
-
   authenticated :user do
     root to: 'dashboard#index', as: :authenticated_root
     resources :customers, only: %i[index show new create edit update destroy]
