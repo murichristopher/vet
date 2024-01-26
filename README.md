@@ -1,24 +1,15 @@
-# README
+## Como rodar o projeto
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+```bash
+git clone https://github.com/murichristopher/vet
+```
 
-Things you may want to cover:
+* No diretório do projeto, rodar:
 
-* Ruby version
+```bash
+bundle install
 
-* System dependencies
+rails db:drop db:create db:migrate db:seed
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+rails s
+```
