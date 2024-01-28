@@ -23,7 +23,7 @@ ENV USER=app \
     UID=1000
 
 RUN useradd -m -u $UID -U -d /app -s /bin/bash app
-RUN chown -R app:app /app
+RUN chown -R app:app /app /usr/local/bundle
 
 COPY entrypoint.sh /usr/bin/
 RUN chmod +x /usr/bin/entrypoint.sh
