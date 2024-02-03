@@ -1,19 +1,16 @@
 default: &default
-  adapter: postgresql
-  encoding: unicode
-  host: <%= ENV.fetch("RAILS_DATABASE_HOST") { 'postgres' } %>
-  username: <%= ENV.fetch("RAILS_DATABASE_USER") { 'postgres' } %>
-  password: <%= ENV.fetch("RAILS_DATABASE_PASSWORD") { 'password' } %>
+  adapter: sqlite3
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  timeout: 5000
 
 development:
   <<: *default
-  database: myapp_development
+  database: db/development.sqlite3
 
 test:
   <<: *default
-  database: <%= ENV.fetch("POSTGRES_DB") { 'myapp_test' } %>
+  database: db/test.sqlite3
 
 production:
   <<: *default
-  database: myapp_production
+  database: db/production.sqlite3
