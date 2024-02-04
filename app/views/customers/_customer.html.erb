@@ -1,9 +1,16 @@
 <div id="<%= dom_id customer %>" class="card mb-3">
   <div class="card-body">
     <h5 class="card-title"><%= customer.full_name %></h5>
-    <p class="card-text"><strong>CPF:</strong> <%= customer.registry_code %></p>
-    <p class="card-text"><strong>RG:</strong> <%= customer.identification_code %></p>
-    <p class="card-text"><strong>CEP:</strong> <%= customer.zip_code %></p>
-    <p class="card-text"><strong>Número de telefone:</strong> <%= customer.phone_number %></p>
+    <p class="card-text"><strong>Pets:</strong> <div>
+  <% if customer.pets.any? %>
+    <ul>
+      <% customer.pets.each do |pet| %>
+        <li><%= pet.name %></li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p>Nenhum pet.</p>
+  <% end %>
+</div></p>
   </div>
 </div>

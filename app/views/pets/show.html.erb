@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @pet %>
+
+<div>
+  <%= link_to "Editar pet", edit_pet_path(@pet) %> |
+  <%= link_to 'Voltar', 'javascript:history.back()', class: 'btn btn-secondary' %>
+
+  <%= button_to "Deletar pet", @pet, method: :delete %>
+</div>
