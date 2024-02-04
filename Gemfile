@@ -1,12 +1,14 @@
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby "3.1.0"
+ruby "3.1.2"
 
 # Custom Gems
 
 # [DEVISE] Please review the [changelog] and [upgrade guide] for more info on Hotwire / Turbo integration.
 gem "devise"
+gem 'devise-i18n'
+
 
 gem 'prawn-rails'
 gem 'prawn-table'
@@ -26,6 +28,8 @@ gem "pg", "~> 1.1"
 
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", "~> 5.0"
+
+gem 'sqlite3'
 
 # Bundle and transpile JavaScript [https://github.com/rails/jsbundling-rails]
 gem "jsbundling-rails"
@@ -56,6 +60,8 @@ gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
+
+gem "rails-i18n"
 
 # Use Sass to process CSS
 # gem "sassc-rails"
