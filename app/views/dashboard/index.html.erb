@@ -4,23 +4,33 @@
           <div class="card-body d-flex flex-column align-items-center gap-1">
             <div class="d-flex justify-content-center align-items-center gap-2">
               <i class="bi bi-house icon"></i>
-              <h1 class="card">18</h1>
+              <h1 class="card"> <%=Customer.count%></h1>
             </div>
             <p class="card-text">Tutores</p>
+            <div class="d-flex justify-content-center align-itens-center gap-1">
+              <p class="card-text"><%=button_to "Criar", new_customer_path, method:"get", class:"btn btn-primary"%></p>
+              <p class="card-text"><%=button_to "Buscar", customers_path, method:"get", class:"btn btn-primary"%></p>
+            </div>
           </div>
         </div>
       </div>
+
       <div class="col-12 col-md-6 col-lg-3">
         <div class="card h-100">
           <div class="card-body d-flex flex-column align-items-center gap-1">
             <div class="d-flex justify-content-center align-items-center gap-2">
               <i class="bi bi-emoji-heart-eyes icon"></i>
-              <h1 class="card">25</h1>
+              <h1 class="card"> <%=Customer.count%></h1>
             </div>
             <p class="card-text">Pets</p>
+            <div class="d-flex justify-content-center align-itens-center gap-1">
+              <p class="card-text"><%=button_to "Criar", new_pet_path, method:"get", class:"btn btn-primary"%></p>
+              <p class="card-text"><%=button_to "Buscar", pets_path, method:"get", class:"btn btn-primary"%></p>
+            </div>
           </div>
         </div>
       </div>
+
       <div class="col-12 col-md-6 col-lg-3">
         <div class="card h-100">
           <div class="card-body d-flex flex-column align-items-center gap-1">
@@ -32,6 +42,7 @@
           </div>
         </div>
       </div>
+
       <div class="col-12 col-md-6 col-lg-3">
         <div class="card h-100">
           <div class="card-body d-flex flex-column align-items-center gap-1">
@@ -44,4 +55,4 @@
         </div>
       </div>
 
-    </div>
+</div>
