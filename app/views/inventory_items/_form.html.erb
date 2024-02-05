@@ -1,0 +1,26 @@
+<%= form_with(model: inventory_item, class: "mt-5") do |form| %>
+  <% if inventory_item.errors.any? %>
+    <div class="alert alert-danger">
+      <ul class="mb-0">
+        <% inventory_item.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="mb-3">
+    <%= form.label "Nome", class: "form-label" %>
+    <%= form.text_field :name, class: "form-control" %>
+  </div>
+  <div class="mb-3">
+    <%= form.label "Preço", class: "form-label" %>
+    <%= form.text_field :price, class: "form-control" %>
+  </div>
+  <div class="mb-3">
+    <%= form.label "Quantidade", class: "form-label" %>
+    <%= form.number_field :quantity, class: "form-control" %>
+  </div>
+  <div class="d-grid gap-2">
+    <%= form.submit "Salvar", class: "btn btn-success mt-3" %>
+  </div>
+<% end %>
