@@ -1,0 +1,11 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @service_order %>
+
+<div>
+  <%= link_to "Editar comanda", edit_service_order_path(@service_order) %> |
+  <%= link_to "Voltar", service_orders_path %>
+
+  <%= button_to "Destruir comanda", @service_order, method: :delete %>
+<%= button_to "Encaminhar para a esteira", new_service_order_service_queue_item_path(service_order_id: @service_order.id), method: :get %>
+</div>

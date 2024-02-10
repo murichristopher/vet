@@ -20,6 +20,10 @@ $primary: #725ac1; // New color: green
   }
 }
 
+.text {
+  color: #725ac1 !important;
+}
+
 $text-input-types: "text", "password", "datetime", "datetime-local", "date",
   "month", "time", "week", "number", "email", "url", "search", "tel", "color";
 

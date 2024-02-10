@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @service_queue_item %>
+
+<div>
+  <%= link_to "Edit this service queue item", edit_service_queue_item_path(@service_queue_item) %> |
+  <%= link_to "Back to service queue items", service_queue_items_path %>
+
+  <%= button_to "Destroy this service queue item", @service_queue_item, method: :delete %>
+</div>

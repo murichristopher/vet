@@ -21,6 +21,15 @@
           <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
             <%= link_to "Estoque", inventory_items_path %>
           </ul>
+          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+            <%= link_to "Comandas", service_orders_path %>
+          </ul>
+          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+            <%= link_to "Esteira", service_order_service_queue_items_path(1) %>
+          </ul>
+          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+            <%= link_to "Internação", hospitalization_items_path %>
+          </ul>
         </div>
       </li>
       <li class="mb-1">
