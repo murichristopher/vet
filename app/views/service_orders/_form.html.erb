@@ -1,0 +1,38 @@
+<%= form_with(model: service_order) do |form| %>
+  <% if service_order.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(service_order.errors.count, "error") %> prohibited this service_order from being saved:</h2>
+
+      <ul>
+        <% service_order.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <div class="field form-group">
+      <%= form.label :customer_id, "Tutor", class: 'form-label' %>
+      <%= form.collection_select :customer_id, Customer.all, :id, :full_name, {include_blank: true}, {class: 'form-select'} %>
+    </div>
+     <div class="field form-group">
+      <%= form.label :pet_id, "Pet", class: 'form-label' %>
+      <%= form.collection_select :pet_id, Pet.all, :id, :name, {include_blank: true}, {class: 'form-select'} %>
+    </div>
+    <div class="field form-group">
+      <%= form.label :descripton, "Descrição", class: 'form-label' %>
+      <%= form.text_field :descripton %>
+    </div>
+   <div class="field form-group">
+      <%= form.label :inventory_item_id, "Produto", class: 'form-label' %>
+      <%= form.collection_select :inventory_item_id, InventoryItem.all, :id, :name, {include_blank: true}, {class: 'form-select'} %>
+    </div>
+  </div>
+
+  <div>
+    <%= form.submit "Salvar" %>
+  </div>
+
+
+<% end %>

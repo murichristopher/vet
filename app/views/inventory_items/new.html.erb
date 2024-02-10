@@ -1,0 +1,14 @@
+<div class="container p-5">
+  <h1 class="mb-3">Novo item</h1>
+
+<%= render "form", inventory_item: @inventory_item %>
+  <div class="d-flex justify-content-end align-items-center">
+    <%= link_to "Voltar", inventory_items_path, class: "lucas btn btn-secondary me-2" %>
+  </div>
+</div>
+
+<style>
+  .lucas {
+    margin-top: 1em;
+  }
+</style>

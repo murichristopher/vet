@@ -18,6 +18,18 @@
           <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
             <%= link_to "Pets", pets_path%>
           </ul>
+          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+            <%= link_to "Estoque", inventory_items_path %>
+          </ul>
+          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+            <%= link_to "Comandas", service_orders_path %>
+          </ul>
+          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+            <%= link_to "Esteira", service_order_service_queue_items_path(1) %>
+          </ul>
+          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+            <%= link_to "Internação", hospitalization_items_path %>
+          </ul>
         </div>
       </li>
       <li class="mb-1">
@@ -42,7 +54,7 @@
         <div class="collapse" id="orders-collapse">
           <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
             <li class="rounded">
-              <%= button_to "Sair", destroy_user_session_path(current_user), method: :delete, class: "btn-toggle rounded btn-danger", form: { "data-turbo" => "false" }  %>
+              <%= button_to "Sair", destroy_user_session_path(current_user), method: :delete, class: "btn-toggle rounded btn-danger"%>
             </li>
           </ul>
         </div>

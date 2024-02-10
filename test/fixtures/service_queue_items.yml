@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  customer: one
+  pet: one
+  queue_name: MyString
+  status: 1
+  urgency: false
+
+two:
+  customer: two
+  pet: two
+  queue_name: MyString
+  status: 1
+  urgency: false

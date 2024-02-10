@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Service queue items</h1>
+
+<div id="service_queue_items">
+  <% @service_queue_items.each do |service_queue_item| %>
+    <%= render service_queue_item %>
+    <p>
+      <%= link_to "Show this service queue item", service_queue_item %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New service queue item", new_service_queue_item_path %>

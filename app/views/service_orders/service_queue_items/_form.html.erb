@@ -1,0 +1,38 @@
+<%= form_with(model: [@service_order, service_queue_item], local: true) do |form| %>
+  <% if service_queue_item.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(service_queue_item.errors.count, "error") %> prohibited this service queue item from being saved:</h2>
+      <ul>
+        <% service_queue_item.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field form-group">
+    <%= form.label :customer_id, 'Customer', class: 'form-label' %>
+    <p><%= Customer.find(@service_order.customer_id).full_name %></p>
+    <%= form.hidden_field :customer_id, value: @service_order.customer_id %>
+  </div>
+
+  <div class="field form-group">
+    <%= form.label :pet_id, 'Pet', class: 'form-label' %>
+    <p><%= Pet.find(@service_order.pet_id).name %></p>
+    <%= form.hidden_field :pet_id, value: @service_order.pet_id %>
+  </div>
+
+  <div class="field form-group">
+    <%= form.label :queue_name, class: 'form-label' %>
+    <%= form.text_field :queue_name, class: 'form-control' %>
+  </div>
+
+  <div class="field form-group">
+    <%= form.label :urgency, class: 'form-label' %>
+    <%= form.check_box :urgency, class: 'form-check-input' %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit class: 'btn btn-primary' %>
+  </div>
+<% end %>

@@ -1,0 +1,2 @@
+module ServiceQueueItemsHelper
+end

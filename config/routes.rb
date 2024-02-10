@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  resources :hospitalization_items
+  resources :service_orders do
+    resources :service_queue_items
+  end
+  resources :inventory_items, except: %i[show]
   resources :pets
   devise_for :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

@@ -1,0 +1,15 @@
+
+<div class="card mb-3">
+  <div class="card-body">
+    <p><strong>Tutor:</strong> <%= Customer.find(service_order.customer_id).full_name %></p>
+    <p><strong>Pet:</strong> <%= Pet.find(service_order.pet_id).name %></p>
+    <p><strong>Descrição:</strong> <%= service_order.description %></p>
+    <p><strong>Preço:</strong> <%= number_to_currency(service_order.price) %></p>
+    <p><strong>Produtos:</strong> <%= InventoryItem.find(service_order.inventory_item_id).name %></p>
+  </div>
+  <div class="card-footer d-flex gap-2">
+    <%= link_to "Editar comanda", edit_service_order_path(service_order), class: "btn btn-primary" %>
+    <%= button_to "Excluir comanda", service_order, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
+    <%= button_to "Encaminhar para a esteira", new_service_order_service_queue_item_path(service_order_id: service_order.id), method: :get, class: "btn btn-info" %>
+  </div>
+</div>

@@ -1,0 +1,15 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Comandas</h1>
+
+<div id="service_orders" class="row">
+  <% @service_orders.each do |service_order| %>
+      <div class="col-12 col-sm-6 col-md-12 col-lg-12 mb-4">
+        <div class="card h-100">
+          <%= render service_order %>
+        </div>
+    </div>
+  <% end %>
+</div>
+
+<%= link_to "Criar nova comanda", new_service_order_path %>
