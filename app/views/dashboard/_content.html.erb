@@ -8,7 +8,7 @@
     <ul class="list-unstyled ps-0">
       <li class="mb-1">
         <button class="btn btn-toggle align-items-center rounded collapsed title gap-1" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">
-          <i class="bi bi-house"></i>
+          <i class="bi bi-clipboard2-heart-fill"></i>
           Atendimento
         </button>
         <div class="collapse show" id="home-collapse">
@@ -19,85 +19,85 @@
             <%= link_to "Pets", pets_path%>
           </ul>
           <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-          <%= link_to "Comandas", service_orders_path %>
-        </ul>
-        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-          <%= link_to "Esteira", service_order_service_queue_items_path(1) %>
-        </ul>
-      </div>
-    </li>
-    <li class="mb-1">
-      <button class="btn btn-toggle align-items-center rounded collapsed title gap-1" data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-expanded="false">
-        <i class="bi bi-house"></i>
-        Estoque
-      </button>
-      <div class="collapse" id="dashboard-collapse">
-        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-            <%= link_to "Produtos", inventory_items_path %>
+            <%= link_to "Comandas", service_orders_path %>
           </ul>
-          <li><a href="#" class="rounded">Consulta de preço</a></li>
-        </ul>
-      </div>
-    </li>
-    <li class="mb-1">
-      <button class="btn btn-toggle align-items-center rounded collapsed title gap-1" data-bs-toggle="collapse" data-bs-target="#orders-collapse" aria-expanded="false">
-        <i class="bi bi-house"></i>
-        Internação
-      </button>
-      <div class="collapse" id="orders-collapse">
-        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
           <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-            <%= link_to "Internação", hospitalization_items_path %>
+            <%= link_to "Esteira", service_order_service_queue_items_path(1) %>
           </ul>
-        </ul>
-      </div>
-    </li>
-    <li class="mb-1">
-      <button class="btn btn-toggle align-items-center rounded collapsed title gap-1" data-bs-toggle="collapse" data-bs-target="#orders-collapse" aria-expanded="false">
-        <i class="bi bi-house"></i>
-        Configurações
-      </button>
-      <div class="collapse" id="orders-collapse">
-        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-          <li class="rounded">
-            <%= button_to "Sair", destroy_user_session_path(current_user), method: :delete, class: "btn-toggle rounded btn-danger"%>
-          </li>
-        </ul>
-      </div>
-    </li>
-  </ul>
-</div>
-<div class="container p-5">
-  <!-- Breadcrumbs and Back Button in a Flex Container for alignment -->
-  <div class="d-flex justify-content-between align-items-center mb-4">
-    <nav aria-label="breadcrumb">
-      <ol class="breadcrumb">
-        <% breadcrumbs.each do |breadcrumb| %>
-          <% if breadcrumb.path.present? %>
-            <li class="breadcrumb-item">
-              <%= link_to breadcrumb.name, send(breadcrumb.path) %>
+        </div>
+      </li>
+      <li class="mb-1">
+        <button class="btn btn-toggle align-items-center rounded collapsed title gap-1" data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-expanded="false">
+          <i class="bi bi-boxes"></i>
+          Estoque
+        </button>
+        <div class="collapse" id="dashboard-collapse">
+          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+              <%= link_to "Produtos", inventory_items_path %>
+            </ul>
+            <li><a href="#" class="rounded">Consulta de preço</a></li>
+          </ul>
+        </div>
+      </li>
+      <li class="mb-1">
+        <button class="btn btn-toggle align-items-center rounded collapsed title gap-1" data-bs-toggle="collapse" data-bs-target="#orders-collapse" aria-expanded="false">
+          <i class="bi bi-heart-pulse-fill"></i>
+          Internação
+        </button>
+        <div class="collapse" id="orders-collapse">
+          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+              <%= link_to "Internação", hospitalization_items_path %>
+            </ul>
+          </ul>
+        </div>
+      </li>
+      <li class="mb-1">
+        <button class="btn btn-toggle align-items-center rounded collapsed title gap-1" data-bs-toggle="collapse" data-bs-target="#orders-collapse" aria-expanded="false">
+          <i class="bi bi-person-fill-gear"></i>
+          Configurações
+        </button>
+        <div class="collapse" id="orders-collapse">
+          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+            <li class="rounded">
+              <%= button_to "Sair", destroy_user_session_path(current_user), method: :delete, class: "btn-toggle rounded btn-danger"%>
             </li>
-          <% else %>
-            <li class="breadcrumb-item active" aria-current="page">
-              <%= breadcrumb.name %>
-            </li>
-          <% end %>
-        <% end %>
-      </ol>
-    </nav>
-    <div class='d-flex gap-2'>
-      <% if content_for?(:item) %>
-        <%= content_for :item %>
-      <% end %>
-      <%= link_to :back, class: "btn btn-secondary d-flex align-items-center gap-2" do %>
-        <i class="bi bi-arrow-left"></i> Voltar
-      <% end %>
-    </div>
+          </ul>
+        </div>
+      </li>
+    </ul>
   </div>
-  <!-- Main Content -->
-  <%= yield %>
-</div>
+  <div class="container py-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb text-center m0-auto m-0">
+          <% breadcrumbs.each do |breadcrumb| %>
+            <% if breadcrumb.path.present? %>
+              <li class="breadcrumb-item">
+                <%= link_to breadcrumb.name, send(breadcrumb.path) %>
+              </li>
+            <% else %>
+              <li class="breadcrumb-item active" aria-current="page">
+                <%= breadcrumb.name %>
+              </li>
+            <% end %>
+          <% end %>
+        </ol>
+      </nav>
+      <div class='d-flex gap-2 justify-content-center align-items-cente'>
+        <% if content_for?(:item) %>
+          <%= content_for :item %>
+        <% end %>
+        <%= link_to :back, class: "btn btn-secondary d-flex align-items-center gap-2" do %>
+          <i class="bi bi-arrow-left"></i> Voltar
+        <% end %>
+      </div>
+    </div>
+    <!-- Main Content -->
+    <hr />
+    <%= yield %>
+  </div>
 </div>
 <style>
   .icon {

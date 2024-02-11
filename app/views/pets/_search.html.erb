@@ -1,0 +1,7 @@
+<%= form_with(url: pets_path, method: "get", local: true, class: "mb-3") do |form| %>
+  <div class="input-group">
+    <%= form.text_field :search, placeholder: "Digite o nome do Pet", value: params[:search], class: "form-control" %>
+    <button class="btn btn-outline-secondary" type="submit"><i class="bi bi-search"></i></button>
+    <%= link_to "", pets_path, class: "btn btn-outline-danger bi-trash", role: "button" %>
+  </div>
+<% end %>

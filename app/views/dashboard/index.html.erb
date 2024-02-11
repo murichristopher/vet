@@ -8,12 +8,12 @@
         </div>
         <div class="d-flex justify-content-center align-itens-center gap-1">
           <p class="card-text">
-            <%=button_to new_customer_path, method:"get", class:"btn btn-primary" do %>
+            <%= button_to new_customer_path, method:"get", class:"btn btn-primary" do %>
               <i class="fa-solid fa-plus"></i>
             <% end %>
           </p>
           <p class="card-text">
-            <%=button_to customers_path, method:"get", class:"btn btn-primary" do %>
+            <%= button_to customers_path, method:"get", class:"btn btn-primary" do %>
               <i class="fa-solid fa-magnifying-glass"></i>
             <% end %>
           </p>
@@ -30,14 +30,28 @@
         </div>
         <div class="d-flex justify-content-center align-itens-center gap-1">
           <p class="card-text">
-            <%=button_to new_pet_path, method:"get", class:"btn btn-primary" do %>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newEntityModal">
               <i class="fa-solid fa-plus"></i>
-            <% end %>
+            </button>
+            <%= render 'pets/modal_form'%>
           </p>
           <p class="card-text">
-            <%=button_to pets_path, method:"get", class:"btn btn-primary" do %>
-              <i class="fa-solid fa-magnifying-glass"></i>
-            <% end %>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#searchModal">
+              <i class="fa-solid fa-magnifying-glass" style="font-size: 16px;"></i>
+            </button>
+            <div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="searchModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="searchModalLabel">Pesquisar Pet</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <%= render 'pets/search'%>
+                  </div>
+                </div>
+              </div>
+            </div>
           </p>
         </div>
       </div>
@@ -69,7 +83,7 @@
         </div>
         <div class="d-flex justify-content-center align-itens-center gap-1">
           <p class="card-text">
-            <%=button_to pets_path, method:"get", class:"btn btn-primary" do %>
+            <%=button_to inventory_items_path, method:"get", class:"btn btn-primary" do %>
               <i class="fa-solid fa-magnifying-glass"></i>
             <% end %>
           </p>
@@ -78,6 +92,3 @@
     </div>
   </div>
 </div>
-
-
-

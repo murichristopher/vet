@@ -11,4 +11,9 @@ class Pet < ApplicationRecord
   # :color, :situation, presence: true
 
   validates :name, presence: true
+  scope :search, ->(query) { where("name LIKE ?", "%#{query}%") }
+
+  def formatted_name
+    truncate(name, length: 25)
+  end
 end

@@ -5,7 +5,10 @@ class PetsController < ApplicationController
 
   # GET /pets or /pets.json
   def index
-    @pets = Pet.active
+    @pets = Pet.active.search(params[:search]) if params[:search].present?
+    @pets ||= Pet.all.active
+
+    # @pets = @pets.page(params[:page])
   end
 
   # GET /pets/1 or /pets/1.json
