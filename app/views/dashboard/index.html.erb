@@ -26,10 +26,10 @@
       <div class="card-body d-flex flex-column align-items-center gap-1">
         <div class="d-flex justify-content-center align-items-center gap-2">
           <i class="fa-solid fa-paw icon"></i>
-          <h2 class="card"> <%= pluralize(Pet.count, 'pet', 'pets') %></h2>
+          <h2 class="card"> <%= pluralize(Pet.active.count, 'pet', 'pets') %></h2>
         </div>
         <div class="d-flex justify-content-center align-itens-center gap-1">
-           <p class="card-text">
+          <p class="card-text">
             <%=button_to new_pet_path, method:"get", class:"btn btn-primary" do %>
               <i class="fa-solid fa-plus"></i>
             <% end %>
@@ -44,22 +44,22 @@
     </div>
   </div>
   <div class="col-12 col-md-6 col-lg-3">
-  <div class="card h-100">
-    <div class="card-body d-flex flex-column align-items-center gap-1">
-      <div class="d-flex justify-content-center align-items-center gap-2">
-        <i class="bi bi-calendar-week icon" style="font-size: 30px;"></i>
-        <h2 class="card">Agenda</h2>
-      </div>
-      <div class="d-flex justify-content-center align-itens-center gap-1">
-        <p class="card-text">
-          <%= button_to pets_path, method: "get", class: "btn btn-primary" do %>
-            <i class="fa-solid fa-magnifying-glass" style="font-size: 16px;"></i>
-          <% end %>
-        </p>
+    <div class="card h-100">
+      <div class="card-body d-flex flex-column align-items-center gap-1">
+        <div class="d-flex justify-content-center align-items-center gap-2">
+          <i class="bi bi-calendar-week icon" style="font-size: 30px;"></i>
+          <h2 class="card">Agenda</h2>
+        </div>
+        <div class="d-flex justify-content-center align-itens-center gap-1">
+          <p class="card-text">
+            <%= button_to pets_path, method: "get", class: "btn btn-primary" do %>
+              <i class="fa-solid fa-magnifying-glass" style="font-size: 16px;"></i>
+            <% end %>
+          </p>
+        </div>
       </div>
     </div>
   </div>
-</div>
   <div class="col-12 col-md-6 col-lg-3">
     <div class="card h-100">
       <div class="card-body d-flex flex-column align-items-center gap-1">
@@ -78,3 +78,6 @@
     </div>
   </div>
 </div>
+
+
+

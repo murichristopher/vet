@@ -1,18 +1,67 @@
-<p class="text-success"><%= notice %></p>
+<% content_for :item do %>
+  <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#newEntityModal">
+    <i class="bi bi-plus-lg"></i> Novo Pet
+  </button>
+<% end %>
 <div class="container p-5">
   <h1 class="mb-3">Pets</h1>
-  <div id="pets" class="row">
+  <div class="row" id="pets">
     <% @pets.each do |pet| %>
       <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
         <div class="card h-100">
-          <%= render pet %>
-          <div class="card-footer">
-            <%= link_to "Mostrar pet", pet, class: "btn btn-primary" %>
+          <% if false && pet.image.attached? %>
+            <%= image_tag(pet.image, class: "image") %>
+          <% else %>
+            <%= image_tag('no-image.png', class: 'image') %>
+          <% end %>
+          <div class="card-body">
+            <h5 class="card-title"><%= pet.name %></h5>
+            <p class="card-text">Some details about the pet...</p>
+            <div class="d-flex justify-content-between align-items-center">
+              <%= link_to pet_path(pet), class: "btn btn-primary" do %>
+                <i class="bi bi-eye"></i>
+              <% end %>
+              <%= link_to edit_pet_path(pet), class: "btn btn-warning" do %>
+                <i class="bi bi-pencil-square"></i>
+              <% end %>
+              <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deletePetModal" data-pet-id="<%= pet.id %>">
+                <i class="bi bi-trash"></i>
+              </button>
+            </div>
           </div>
         </div>
       </div>
     <% end %>
   </div>
-
-  <%= button_to "Novo pet", new_pet_path, class: "btn btn-success mt-3", method:"get" %>
 </div>
+<div class="modal fade" id="deletePetModal" tabindex="-1" aria-labelledby="deletePetModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deletePetModalLabel">Exclusão de Pet</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Você tem certeza dessa ação?
+      </div>
+      <div class="modal-footer">
+        <%= button_to "Deletar Pet", "#", method: :delete, class: "btn btn-danger", id: "delete-pet-confirm-btn" %>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+      </div>
+    </div>
+  </div>
+</div>
+<%= render "modal_form", pet: @pet %>
+<script>
+  document.getElementById('deletePetModal').addEventListener('show.bs.modal', function (event) {
+    const button = event.relatedTarget; // Button that triggered the modal
+    const petId = button.getAttribute('data-pet-id'); // Extract info from data-* attributes
+    const confirmButton = document.getElementById('delete-pet-confirm-btn');
+    confirmButton.form.action = `/pets/${petId}`; // Update the form's action
+  });
+</script>
+<style>
+  .image {
+    height: 10rem; /* Adjust the height value as needed */
+  }
+</style>

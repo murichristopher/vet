@@ -10,6 +10,21 @@ pt-BR:
         restrict_dependent_destroy:
           has_one: Não é possível excluir o registro pois existe um %{record} dependente
           has_many: Não é possível excluir o registro pois existem %{record} dependentes
+    pets:
+      attributes:
+        customer_id: "Tutor"
+        name: "Nome"
+        sex: "Sexo"
+        castrated: "Castrado"
+        birthday: "Data de Nascimento"
+        race: "Raça"
+        specie: "Espécie"
+        size: "Tamanho"
+        weight: "Peso"
+        color: "Cor"
+        situation: "Situação"
+        observations: "Observações"
+        image_url: "URL da Imagem"
   date:
     abbr_day_names:
       - dom

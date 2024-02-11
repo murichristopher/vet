@@ -1,6 +1,8 @@
 class InventoryItemsController < ApplicationController
   before_action :set_inventory_item, only: %i[ show edit update destroy ]
 
+  add_breadcrumb "Estoque", :inventory_items_path
+
   # GET /inventory_items or /inventory_items.json
   def index
     @inventory_items = InventoryItem.all

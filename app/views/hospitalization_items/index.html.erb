@@ -1,22 +1,18 @@
+<% content_for :item do %>
+  <%= link_to "Novo item de internação", new_hospitalization_item_path, class: "btn btn-success" %>
+<% end %>
 <div class="container mt-3">
   <p class="text-success"><%= notice %></p>
-
-  <h1 class="mb-4">Itens de Internação</h1>
-
+  <h1 class="mb-4">Internação</h1>
   <div class="row">
     <% @hospitalization_items.each do |hospitalization_item| %>
       <div class="col-md-4 mb-3">
         <div class="card">
           <div class="card-body">
             <%= render hospitalization_item %>
-            <p class="mt-2">
-              <%= link_to "Mostrar este item de internação", hospitalization_item, class: "btn btn-primary" %>
-            </p>
           </div>
         </div>
       </div>
     <% end %>
   </div>
-
-  <%= link_to "Novo item de internação", new_hospitalization_item_path, class: "btn btn-success" %>
 </div>

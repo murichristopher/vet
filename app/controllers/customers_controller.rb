@@ -1,5 +1,10 @@
 class CustomersController < ApplicationController
   before_action :set_customer, only: %i[show edit update destroy]
+  add_breadcrumb "Tutores", :customers_path
+
+  def show
+    add_breadcrumb @customer.full_name, customer_path(@customer)
+  end
 
   # GET /customers or /customers.json
   def index
@@ -8,6 +13,8 @@ class CustomersController < ApplicationController
 
   # GET /customers/1 or /customers/1.json
   def show
+    add_breadcrumb "Tutor: #{@customer.full_name}"
+
     @logo = "#{Rails.root}/app/assets/images/hospitalvet2.png"
     pdf = Prawn::Document.new
     pdf.text("Prawn Rocks")
@@ -27,6 +34,8 @@ class CustomersController < ApplicationController
 
   # GET /customers/new
   def new
+    add_breadcrumb "Novo tutor", :new_customer_path
+
     @customer = Customer.new
   end
 

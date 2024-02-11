@@ -1,3 +1,6 @@
+<% content_for :item do %>
+  <%= link_to "Novo tutor", new_customer_path, class: "btn btn-success" %>
+<% end %>
 <p class="text-success"><%= notice %></p>
 <div class="container p-5">
   <h1 class="mb-3">Tutores</h1>
@@ -13,6 +16,4 @@
       </div>
     <% end %>
   </div>
-
-  <%= button_to "Novo tutor", new_customer_path, class: "btn btn-success mt-3", method:"get" %>
 </div>

@@ -1,23 +1,24 @@
 class PetsController < ApplicationController
-  before_action :set_pet, only: %i[ show edit update destroy ]
+  before_action :set_pet, only: %i[show edit update destroy]
+
+  add_breadcrumb "Pets", :pets_path
 
   # GET /pets or /pets.json
   def index
-    @pets = Pet.all
+    @pets = Pet.active
   end
 
   # GET /pets/1 or /pets/1.json
-  def show
-  end
+  def show; end
 
-  # GET /pets/new
   def new
+    add_breadcrumb "Novo pet", :new_pet_path
+
     @pet = Pet.new
   end
 
   # GET /pets/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /pets or /pets.json
   def create
@@ -25,11 +26,10 @@ class PetsController < ApplicationController
 
     respond_to do |format|
       if @pet.save
-        format.html { redirect_to pet_url(@pet), notice: "Pet was successfully created." }
+        format.html { redirect_to pets_path, notice: "Pet #{@pet.name} foi criado!" }
         format.json { render :show, status: :created, location: @pet }
       else
         format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @pet.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -38,7 +38,7 @@ class PetsController < ApplicationController
   def update
     respond_to do |format|
       if @pet.update(pet_params)
-        format.html { redirect_to pet_url(@pet), notice: "Pet was successfully updated." }
+        format.html { redirect_to pet_url(@pet), notice: "Petfoi atualizado!" }
         format.json { render :show, status: :ok, location: @pet }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -49,22 +49,22 @@ class PetsController < ApplicationController
 
   # DELETE /pets/1 or /pets/1.json
   def destroy
-    @pet.destroy
+    @pet.update(status: :inactive)
 
     respond_to do |format|
-      format.html { redirect_to pets_url, notice: "Pet was successfully destroyed." }
-      format.json { head :no_content }
+      format.html { redirect_to pets_url, notice: "Pet foi removido!" }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_pet
-      @pet = Pet.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def pet_params
-      params.require(:pet).permit(:name, :customer_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_pet
+    @pet = Pet.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def pet_params
+    params.require(:pet).permit(:name, :customer_id)
+  end
 end
