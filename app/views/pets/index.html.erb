@@ -8,7 +8,7 @@
     <h1>Pets</h1>
     <%= render 'search', search_term: params[:search] %>
   </div>
-  <div class="row" id="pets">
+  <div class="column" id="pets">
     <% if @pets.empty? && params[:search].present? %>
       <div class="text-center my-5">
         <i class="bi bi-search" style="font-size: 2rem;"></i>
@@ -22,28 +22,28 @@
         <p>Atualmente não há pets cadastrados no sistema.</p>
       </div>
     <% else %>
-      <div class="row" id="pets">
+      <div class="column" id="pets">
         <% @pets.each do |pet| %>
-          <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12 mb-4">
             <div class="card h-100">
-              <% if false && pet.image.attached? %>
-                <%= image_tag(pet.image, class: "image") %>
-              <% else %>
-                <%= image_tag('no-image.png', class: 'image') %>
-              <% end %>
-              <div class="card-body">
-                <h5 class="card-title"><%= pet.formatted_name %></h5>
-                <p class="card-text">Some details about the pet...</p>
-                <div class="d-flex justify-content-between align-items-center">
-                  <%= link_to pet_path(pet), class: "btn btn-primary" do %>
-                    <i class="bi bi-eye"></i>
+              <div class="card-body d-flex justify-content-between">
+                <div class="d-flex gap-3 align-items-center">
+                  <% if pet.image.attached? %>
+                    <%= image_tag pet.image.variant(resize_to_limit: [100, 100]) %>
+                  <% else %>
+                    <%= image_tag 'no-image.png', size: "100x100" %>
                   <% end %>
-                  <%= link_to edit_pet_path(pet), class: "btn btn-warning" do %>
-                    <i class="bi bi-pencil-square"></i>
-                  <% end %>
-                  <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deletePetModal" data-pet-id="<%= pet.id %>">
-                    <i class="bi bi-trash"></i>
-                  </button>
+                  <div>
+                    <h6 class="card-title"><%= pet.formatted_name %></h6>
+                    <p class="card-text">
+                      <strong>Tutor:</strong> <%= link_to pet.customer.full_name, customer_path(pet.customer) %><br>
+                      <%= pet.race %> | <%= pet.weight %>kg
+                    </p>
+                  </div>
+                </div>
+                <div class="d-flex justify-content-center align-items-center gap-2">
+                  <%= link_to 'Detalhes', pet_path(pet), class: "btn btn-primary h-50" %>
+                  <%= link_to 'Criar comanda', new_customer_path(pet_id: pet.id), class: "btn btn-outline-primary h-50" %>
                 </div>
               </div>
             </div>

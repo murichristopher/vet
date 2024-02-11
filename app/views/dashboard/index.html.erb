@@ -83,12 +83,52 @@
         </div>
         <div class="d-flex justify-content-center align-itens-center gap-1">
           <p class="card-text">
-            <%=button_to inventory_items_path, method:"get", class:"btn btn-primary" do %>
-              <i class="fa-solid fa-magnifying-glass"></i>
-            <% end %>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#searchModalInventory">
+              <i class="fa-solid fa-magnifying-glass" style="font-size: 16px;"></i>
+            </button>
+            <div class="modal fade" id="searchModalInventory" tabindex="-1" aria-labelledby="searchModalInventoryLabel" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="searchModalInventoryLabel">Pesquisar Item</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <%= render 'inventory_items/search'%>
+                  </div>
+                </div>
+              </div>
+            </div>
           </p>
         </div>
       </div>
     </div>
+  </div>
+</div>
+<hr />
+<p class="text-success"><%= notice %></p>
+<div class="container p-5">
+  <h1 class="mb-3">Esteira</h1>
+  <div id="service_queue_items" class="row">
+    <% @service_queue_items.each do |service_queue_item| %>
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
+        <div class="card h-100">
+          <div class="card-body">
+            <h5 class="card-title"><%= service_queue_item.queue_name %></h5>
+            <p class="card-text">
+              <strong>Criado em:</strong> <%= service_queue_item.created_at.strftime("%d/%m/%Y às %H:%M") %>
+              (<%= time_ago_in_words(service_queue_item.created_at) %> atrás)<br>
+              <strong>Customer ID:</strong> <%= service_queue_item.customer_id %><br>
+              <strong>Pet ID:</strong> <%= service_queue_item.pet_id %><br>
+              <strong>Status:</strong> <%= service_queue_item.status %><br>
+              <strong>Urgency:</strong> <%= service_queue_item.urgency ? 'Yes' : 'No' %>
+            </p>
+          </div>
+          <div class="card-footer">
+            <%= link_to "Concluido", service_order_service_queue_items_path(service_queue_item), class: "btn btn-primary" %>
+          </div>
+        </div>
+      </div>
+    <% end %>
   </div>
 </div>

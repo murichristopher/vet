@@ -3,7 +3,7 @@
     <h5 class="card-title"><%= inventory_item.name  %></h5>
     <p>
       <strong>Preço:</strong>
-      <%= inventory_item.price %>
+      <%= number_to_currency(inventory_item.price) %>
     </p>
     <p>
       <strong>Quantidade:</strong>

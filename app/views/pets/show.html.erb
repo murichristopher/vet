@@ -1,10 +1,41 @@
-<p style="color: green"><%= notice %></p>
-
-<%= render @pet %>
-
-<div>
-  <%= link_to "Editar pet", edit_pet_path(@pet) %> |
-  <%= link_to 'Voltar', 'javascript:history.back()', class: 'btn btn-secondary' %>
-
-  <%= button_to "Deletar pet", @pet, method: :delete %>
+<% content_for :item do %>
+  <%= button_to 'Editar', edit_pet_path(@pet), method: :get, class: "btn btn-warning bi-pen"%>
+  <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deletePetModal" data-pet-id="<%= @pet.id %>">
+    <i class="bi bi-trash"></i> Deletar
+  </button>
+<% end %>
+<div id="<%= dom_id(@pet) %>" class="card mb-3 shadow-sm">
+  <div class="card-header bg-primary text-white">
+    Detalhes do Pet
+  </div>
+  <div class="card-body">
+    <h5 class="card-title"><%= @pet.name %></h5>
+    <p class="card-text">
+      <strong>Tutor:</strong> <%= link_to @pet.customer.full_name, customer_path(@pet.customer) %><br>
+    </p>
+    <% if @pet.image.attached? %>
+      <img src="<%= url_for(@pet.image.variant(resize_to_limit: [500, 500])) %>" class="img-fluid rounded mb-3" alt="<%= @pet.name %>">
+    <% else %>
+      <img src="<%= asset_path('no-image.png') %>" class="img-fluid rounded mb-3" alt="No image available">
+    <% end %>
+    <p class="card-text"><strong>Race:</strong> <%= @pet.race %></p>
+    <p class="card-text"><strong>Weight:</strong> <%= @pet.weight %>kg</p>
+  </div>
+</div>
+<div class="modal fade" id="deletePetModal" tabindex="-1" aria-labelledby="deletePetModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deletePetModalLabel">Exclusão de Pet</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Você tem certeza dessa ação?
+      </div>
+      <div class="modal-footer">
+        <%= button_to "Deletar Pet", "#", method: :delete, class: "btn btn-danger", id: "delete-pet-confirm-btn" %>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+      </div>
+    </div>
+  </div>
 </div>

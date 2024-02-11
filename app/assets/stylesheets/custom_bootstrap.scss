@@ -20,6 +20,16 @@ $primary: #725ac1; // New color: green
   }
 }
 
+.btn-outline-primary {
+  border-color: $primary;
+
+  &:hover {
+    background-color: $primary;
+    opacity: 0.6;
+    border-color: $primary;
+  }
+}
+
 .text {
   color: #725ac1 !important;
 }

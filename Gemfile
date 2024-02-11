@@ -22,6 +22,8 @@ gem 'matrix'
 
 gem 'kaminari'
 
+gem 'image_processing'
+
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
@@ -98,3 +100,5 @@ group :test do
   gem "selenium-webdriver"
   gem "webdrivers"
 end
+
+

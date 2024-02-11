@@ -1,4 +1,4 @@
-  <%= form_with(model: Pet.new, url: pets_path, method: "post", id: "new-pet-form") do |form| %>
+<%= form_with(model: @pet || Pet.new, url: pets_path, method: "post", id: "new-pet-form", local: true, multipart: true) do |form| %>
   <% if @pet&.errors&.any? %>
     <div id="error_explanation" class="alert alert-danger" role="alert">
       <i class="bi bi-exclamation-triangle-fill"></i>
@@ -69,7 +69,7 @@
     <%= form.label :image %>
     <%= form.file_field :image %>
   </div>
-  <div class="modal-footer">
+  <div class="modal-footer gap-1">
     <%= form.submit "Adicionar", class: "btn btn-primary" %>
     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
   </div>
