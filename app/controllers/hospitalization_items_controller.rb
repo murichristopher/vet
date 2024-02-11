@@ -1,3 +1,4 @@
+
 class HospitalizationItemsController < ApplicationController
   before_action :set_hospitalization_item, only: %i[ show edit update destroy ]
 
