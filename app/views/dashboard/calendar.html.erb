@@ -1,0 +1,110 @@
+<script>
+  function addEventToCalendar(title, startDate) {
+    var calendarEl = document.getElementById('calendar');
+    var calendar = FullCalendar.getCalendar(calendarEl); // Assumes calendar is already initialized
+
+    calendar.addEvent({
+      title: title,
+      start: startDate,
+    });
+  }
+
+  function initDraggableEvents() {
+    var draggableEls = document.querySelectorAll('.draggable-event');
+
+    // Make each external event draggable
+    draggableEls.forEach(function(draggableEl) {
+      new FullCalendar.Draggable(draggableEl, {
+        eventData: function(eventEl) {
+          return {
+            title: eventEl.innerText,
+            duration: eventEl.dataset.duration
+          };
+        }
+      });
+    });
+  }
+
+
+  document.addEventListener('DOMContentLoaded', function() {
+    var calendarEl = document.getElementById('calendar');
+
+    var calendar = new FullCalendar.Calendar(calendarEl, {
+   timeZone: 'UTC',
+   headerToolbar: {
+     left: 'prev,next today',
+     center: 'title',
+     right: 'dayGridMonth,timeGridWeek,timeGridDay'
+   },
+   editable: true,
+   draggable: true,
+   drop: function(info) {
+          // Optionally remove the event from the external list
+          if (info.draggedEl.parentNode) {
+            info.draggedEl.parentNode.removeChild(info.draggedEl);
+          }
+          },
+   dayMaxEvents: true, // when too many events in a day, show the popover
+   events: [
+   {
+     id: 'a',
+     title: 'Comer pão',
+     start: '2024-02-01'
+   },
+   {
+     id: 'a',
+     title: 'Comer arroz',
+     start: '2024-02-01'
+   },
+   {
+     id: 'a',
+     title: 'Comer arroz',
+     start: '2024-02-01'
+   },
+   {
+     id: 'a',
+     title: 'Comer arroz',
+     start: '2024-02-01'
+   },
+   {
+     id: 'a',
+     title: 'Comer arroz',
+     start: '2024-02-01'
+   },
+   {
+     id: 'a',
+     title: 'Comer arroz',
+     start: '2024-02-01'
+   },
+   {
+     id: 'a',
+     title: 'Comer arroz',
+     start: '2024-02-01'
+   },
+   {
+     id: 'a',
+     title: 'Comer ervilha',
+     start: '2024-02-14'
+   },
+    ]  });
+    initDraggableEvents();
+
+    calendar.render();
+  });
+</script>
+<div id='calendar'></div>
+<div id="external-events">
+  <p>Draggable Events</p>
+  <div class='draggable-event fc-daygrid-day-events' data-event='{"title":"My Event","duration":"02:00"}'>My Event</div>
+  <!-- Add more draggable events as needed -->
+</div>
+<style>
+  #external-events .draggable-event {
+    padding: 5px;
+    margin: 5px;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    cursor: grab;
+  }
+  /* Basic styling for draggable events */
+</style>

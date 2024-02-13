@@ -21,6 +21,8 @@ Rails.application.routes.draw do
   #   get "/users/new" => "devise/sessions#new"
   # end
 
+  get "/calendar", to: "dashboard#calendar"
+
   unauthenticated do
     root to: 'landing_page#index'
   end
