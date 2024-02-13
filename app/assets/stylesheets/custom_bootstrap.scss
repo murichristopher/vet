@@ -11,7 +11,7 @@ $primary: #bf324c; // New color: green
 @import "bootstrap/scss/type";
 
 .btn-primary {
-  background-color: #bf324c;
+  background-color: $primary;
   border-color: $primary;
 
   &:hover {
