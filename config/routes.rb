@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :service_orders do
     resources :service_queue_items
   end
+  resources :events, only: [:index, :create, :destroy]
   resources :inventory_items, except: %i[show]
   resources :pets
   devise_for :users
@@ -22,6 +23,7 @@ Rails.application.routes.draw do
   # end
 
   get "/calendar", to: "dashboard#calendar"
+  post "/save-calendar-state", to: "dashboard#save-calendar-state"
 
   unauthenticated do
     root to: 'landing_page#index'
