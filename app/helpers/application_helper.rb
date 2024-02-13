@@ -1,6 +1,6 @@
 module ApplicationHelper
   CONTENT_PATHS = {
-    dashboard: 'dashboard/content',
+    dashboard: 'shared/logged_layout',
     landing_page: 'landing_page/content'
   }.freeze
   private_constant :CONTENT_PATHS
