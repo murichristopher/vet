@@ -15,6 +15,10 @@ ul {
   padding: 0;
 }
 
+a {
+  text-decoration: none;
+}
+
 :root {
   --blue: #bf324c;
   --white: #fff;
@@ -29,15 +33,13 @@ body {
 }
 
 .dash-container {
-  position: relative;
+  position: relative; /* Ensure this is relative to allow absolute positioning within */
   width: 100%;
-}
-
-.toggle {
-  position: absolute;
-  right: 0;
-  bottom: 100;
-  z-index: 999;
+  background-color: blue !important;
+  z-index: 999999;
+  height: 100%;
+  width: 300px;
+  transition: 0.5s;
 }
 
 /* =============== Navigation ================ */
@@ -51,7 +53,32 @@ body {
   overflow: hidden;
 }
 .navigation.active {
-  width: 80px;
+  width: 84px;
+  padding-right: 60px;
+}
+
+.dash-container.active {
+  width: 110px;
+}
+
+.dash-container .toggle {
+  position: absolute; /* Position absolutely within the relative parent */
+  right: 0; /* Align to the right edge of the dash-container */
+  top: 10px; /* Adjust this value as needed to align vertically as you prefer */
+  z-index: 999; /* Ensure it's on top of other elements */
+  background-color: white;
+  transition: 0.5s;
+  padding: 10px;
+  width: 40px; /* Set a fixed width */
+  height: 40px; /* Set a fixed height equal to the width to make it a circle */
+  border-radius: 50%; /* This makes the div a circle */
+  display: flex; /* Use flexbox to center the icon inside the circle */
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  cursor: pointer;
+  &:hover {
+    background-color: var(--blue);
+  }
 }
 
 .navigation ul {
@@ -107,7 +134,7 @@ body {
 .navigation ul li a .title {
   position: relative;
   display: block;
-  padding: 0 10px;
+  padding: 0 15px;
   height: 60px;
   line-height: 60px;
   text-align: start;
@@ -152,8 +179,8 @@ body {
   transition: 0.5s;
 }
 .main.active {
-  width: calc(100% - 80px);
-  left: 80px;
+  width: calc(100% - 100px);
+  left: 100px;
 }
 
 .topbar {
@@ -164,7 +191,6 @@ body {
   align-items: center;
   padding: 0 10px;
 }
-
 
 .search {
   position: relative;
@@ -416,6 +442,7 @@ body {
     width: 300px;
     left: 0;
   }
+
   .main {
     width: 100%;
     left: 0;
@@ -455,12 +482,15 @@ body {
     left: -100%;
     z-index: 1000;
   }
+
   .navigation.active {
     width: 100%;
     left: 0;
   }
   .toggle {
     z-index: 10001;
+
+    display: none;
   }
   .main.active .toggle {
     color: #fff;
@@ -469,5 +499,3 @@ body {
     left: initial;
   }
 }
-
-

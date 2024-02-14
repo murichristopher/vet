@@ -1,15 +1,14 @@
 <div class="dash-container">
   <div class="toggle">
-    <ion-icon name="menu-outline"></ion-icon>
+    <ion-icon name="chevron-forward-outline"></ion-icon>
   </div>
   <div class="navigation">
     <ul>
-      <li>
-        <a href="#">
+      <li class='logo'>
+        <a href="#" class='logoitem'>
           <span class="icon">
             <ion-icon name="paw-outline"></ion-icon>
           </span>
-          <span class="title"> Petus</span>
         </a>
       </li>
       <li>
@@ -71,3 +70,27 @@
     </ul>
   </div>
 </div>
+<script>
+  let list = document.querySelectorAll(".navigation li");
+
+  function activeLink() {
+    list.forEach((item) => {
+      item.classList.remove("hovered");
+    });
+    this.classList.add("hovered");
+  }
+
+  list.forEach((item) => item.addEventListener("mouseover", activeLink));
+
+  // Menu Toggle
+  let toggle = document.querySelector(".toggle");
+  let navigation = document.querySelector(".navigation");
+  let dash = document.querySelector(".dash-container");
+  let main = document.querySelector(".main");
+
+  toggle.onclick = function () {
+    navigation.classList.toggle("active");
+    dash.classList.toggle("active");
+    main.classList.toggle("active");
+  };
+</script>
