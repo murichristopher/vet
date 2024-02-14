@@ -1,98 +1,111 @@
-<div class="dash-container">
-  <div class="toggle">
-    <ion-icon name="chevron-forward-outline"></ion-icon>
+<div class="sidebar">
+  <div class="logo-details">
+    <i>
+      <%= link_to root_path do %>
+        <ion-icon name="paw-outline"></ion-icon>
+      <% end %>
+    </i>
+    <span class="logo_name">Gestaovet</span>
   </div>
-  <div class="navigation">
-    <ul>
-      <li class='logo'>
-        <a href="#" class='logoitem'>
-          <span class="icon">
-            <ion-icon name="paw-outline"></ion-icon>
-          </span>
-        </a>
-      </li>
-      <li>
-        <%= link_to root_path do %>
-          <span class="icon">
-            <ion-icon name="home-outline"></ion-icon>
-          </span>
-          <span class="title">Página inicial</span>
-        <% end %>
-      </li>
-      <li>
-        <a href="#" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">
-          <span class="icon">
-            <ion-icon name="clipboard-outline"></ion-icon>
-          </span>
-          <div id='voualteraronomedps'>
-            <span class="title">Atendimento</span>
-            <div class="collapse" id="home-collapse">
-              <%= link_to pets_path do%>
-                <h6>caramba</h6>
-              <% end %>
-            </div>
-          </div>
-        </a>
-      </li>
-      <li>
+  <ul class="nav-links">
+    <li>
+      <a href="#">
+        <i class='bx bx-grid-alt' ></i>
+        <span class="link_name">Dashboard</span>
+      </a>
+      <ul class="sub-menu blank">
+        <li><a class="link_name" href="#">Category</a></li>
+      </ul>
+    </li>
+    <li class="">
+      <div class="iocn-link">
         <a href="#">
-          <span class="icon">
-            <ion-icon name="chatbubbles-outline"></ion-icon>
-          </span>
-          <span class="title">AxoChat</span>
+          <i class='bx bx-collection' ></i>
+          <span class="link_name">Category</span>
         </a>
-      </li>
-      <li>
+        <i class='bx bxs-chevron-down arrow' ></i>
+      </div>
+      <ul class="sub-menu">
+        <li><a class="link_name" href="#">Category</a></li>
+        <li><a href="#">HTML & CSS</a></li>
+        <li><a href="#">JavaScript</a></li>
+        <li><a href="#">PHP & MySQL</a></li>
+      </ul>
+    </li>
+    <li>
+      <div class="iocn-link">
         <a href="#">
-          <span class="icon">
-            <ion-icon name="cube-outline"></ion-icon>
-          </span>
-          <span class="title">Estoque</span>
+          <i class='bx bx-book-alt' ></i>
+          <span class="link_name">Posts</span>
         </a>
-      </li>
-      <li>
+        <i class='bx bxs-chevron-down arrow' ></i>
+      </div>
+      <ul class="sub-menu">
+        <li><a class="link_name" href="#">Posts</a></li>
+        <li><a href="#">Web Design</a></li>
+        <li><a href="#">Login Form</a></li>
+        <li><a href="#">Card Design</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#">
+        <i class='bx bx-pie-chart-alt-2' ></i>
+        <span class="link_name">Analytics</span>
+      </a>
+      <ul class="sub-menu blank">
+        <li><a class="link_name" href="#">Analytics</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#">
+        <i class='bx bx-line-chart' ></i>
+        <span class="link_name">Chart</span>
+      </a>
+      <ul class="sub-menu blank">
+        <li><a class="link_name" href="#">Chart</a></li>
+      </ul>
+    </li>
+    <li>
+      <div class="iocn-link">
         <a href="#">
-          <span class="icon">
-            <ion-icon name="medkit-outline"></ion-icon>
-          </span>
-          <span class="title">Internação</span>
+          <i class='bx bx-plug' ></i>
+          <span class="link_name">Plugins</span>
         </a>
-      </li>
-      <li>
-        <a href="#">
-          <span class="icon">
-            <ion-icon name="settings-outline"></ion-icon>
-          </span>
-          <span class="title">Configurações</span>
-        </a>
-      </li>
-      <li>
-        <a href="#">
-          <span class="icon">
-            <ion-icon name="log-out-outline"></ion-icon>
-          </span>
-          <span class="title">Sair</span>
-        </a>
-      </li>
-    </ul>
-  </div>
+        <i class='bx bxs-chevron-down arrow' ></i>
+      </div>
+      <ul class="sub-menu">
+        <li><a class="link_name" href="#">Plugins</a></li>
+        <li><a href="#">UI Face</a></li>
+        <li><a href="#">Pigments</a></li>
+        <li><a href="#">Box Icons</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#">
+        <i class='bx bx-compass' ></i>
+        <span class="link_name">Explore</span>
+      </a>
+      <ul class="sub-menu blank">
+        <li><a class="link_name" href="#">Explore</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#">
+        <i class='bx bx-history'></i>
+        <span class="link_name">History</span>
+      </a>
+      <ul class="sub-menu blank">
+        <li><a class="link_name" href="#">History</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#">
+        <i class='bx bx-cog' ></i>
+        <span class="link_name">Setting</span>
+      </a>
+      <ul class="sub-menu blank">
+        <li><a class="link_name" href="#">Setting</a></li>
+      </ul>
+    </li>
+  </ul>
 </div>
-<script>
-  function activeLink() {
-    document.querySelectorAll(".navigation li").forEach((item) => {
-    item.classList.remove("hovered");
-    });
-    this.classList.add("hovered");
-  }
-
-  document.querySelectorAll(".navigation li").forEach((item) => item.addEventListener("mouseover", activeLink));
-
-  document.querySelector(".toggle").onclick = function () {
-    let navigation = document.querySelector(".navigation");
-    let dash = document.querySelector(".dash-container");
-
-    navigation.classList.toggle("active");
-    dash.classList.toggle("active");
-    document.querySelector('.main').classList.toggle("active");
-  };
-</script>

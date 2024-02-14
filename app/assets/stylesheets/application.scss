@@ -32,160 +32,6 @@ body {
   overflow-x: hidden;
 }
 
-.dash-container {
-  position: relative; /* Ensure this is relative to allow absolute positioning within */
-  width: 100%;
-  background-color: blue !important;
-  z-index: 999999;
-  height: 100%;
-  width: 300px;
-  transition: 0.5s;
-}
-
-/* =============== Navigation ================ */
-.navigation {
-  position: fixed;
-  width: 270px;
-  height: 100%;
-  background: var(--blue);
-  border-left: 10px solid var(--blue);
-  transition: 0.5s;
-  overflow: hidden;
-}
-.navigation.active {
-  width: 84px;
-  padding-right: 60px;
-}
-
-.dash-container.active {
-  width: 110px;
-}
-
-.dash-container .toggle {
-  position: absolute; /* Position absolutely within the relative parent */
-  right: 0; /* Align to the right edge of the dash-container */
-  top: 10px; /* Adjust this value as needed to align vertically as you prefer */
-  z-index: 999; /* Ensure it's on top of other elements */
-  background-color: white;
-  transition: 0.5s;
-  padding: 10px;
-  width: 40px; /* Set a fixed width */
-  height: 40px; /* Set a fixed height equal to the width to make it a circle */
-  border-radius: 50%; /* This makes the div a circle */
-  display: flex; /* Use flexbox to center the icon inside the circle */
-  justify-content: center; /* Center horizontally */
-  align-items: center; /* Center vertically */
-  cursor: pointer;
-  &:hover {
-    background-color: var(--blue);
-  }
-}
-
-.navigation ul {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-}
-
-.navigation ul li {
-  position: relative;
-  width: 100%;
-  list-style: none;
-  border-top-left-radius: 30px;
-  border-bottom-left-radius: 30px;
-}
-
-.navigation ul li:hover,
-.navigation ul li.hovered {
-  background-color: var(--white);
-}
-
-.navigation ul li:nth-child(1) {
-  margin-bottom: 40px;
-  pointer-events: none;
-}
-
-.navigation ul li a {
-  position: relative;
-  display: block;
-  width: 100%;
-  display: flex;
-  text-decoration: none;
-  color: var(--white);
-}
-.navigation ul li:hover a,
-.navigation ul li.hovered a {
-  color: var(--blue);
-}
-
-.navigation ul li a .icon {
-  position: relative;
-  display: block;
-  min-width: 60px;
-  height: 60px;
-  line-height: 75px;
-  text-align: center;
-}
-.navigation ul li a .icon ion-icon {
-  font-size: 1.75rem;
-}
-
-.navigation ul li a .title {
-  position: relative;
-  display: block;
-  padding: 0 15px;
-  height: 60px;
-  line-height: 60px;
-  text-align: start;
-  white-space: nowrap;
-}
-
-#home-collapse  a{
-  // background-color: blue !important;
-  all: unset;
-  margin: 10px;
-  cursor: pointer;
-  &:hover {
-    color: blue;
-  }
-
-  z-index: 999999;
-
-  // a {
-  //   all: unset;
-  //   display: none !important;
-  // }
-}
-
-/* --------- curve outside ---------- */
-.navigation ul li:hover a::before,
-.navigation ul li.hovered a::before {
-  content: "";
-  position: absolute;
-  right: 0;
-  top: -50px;
-  width: 50px;
-  height: 50px;
-  background-color: transparent;
-  border-radius: 50%;
-  box-shadow: 35px 35px 0 10px var(--white);
-  pointer-events: none;
-}
-.navigation ul li:hover a::after,
-.navigation ul li.hovered a::after {
-  content: "";
-  position: absolute;
-  right: 0;
-  bottom: -50px;
-  width: 50px;
-  height: 50px;
-  background-color: transparent;
-  border-radius: 50%;
-  box-shadow: 35px -35px 0 10px var(--white);
-  pointer-events: none;
-}
-
 /* ===================== Main ===================== */
 .main {
   position: absolute;
@@ -198,6 +44,375 @@ body {
 .main.active {
   width: calc(100% - 100px);
   left: 100px;
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background: $primary;
+  width: 260px;
+  z-index: 100;
+  transition: all 0.3s ease;
+  color: white;
+
+  &:not(.close) {
+    .nav-links li.showMenu {
+      a::before {
+        content: "";
+        position: absolute;
+        right: 0;
+        top: -50px;
+        width: 50px;
+        height: 50px;
+        background-color: transparent;
+        border-radius: 50%;
+        transition: all 4s ease;
+        box-shadow: 35px 35px 0 10px var(--white);
+        pointer-events: none;
+      }
+      a::after {
+        content: "";
+        position: absolute;
+        right: 0;
+        transition: all 0.3s ease;
+        bottom: -50px;
+        width: 50px;
+        height: 50px;
+        background-color: transparent;
+        border-radius: 50%;
+        box-shadow: 35px -35px 0 10px var(--white);
+        pointer-events: none;
+      }
+      // AQUUIIIII
+    }
+  }
+
+  .nav-links li {
+    position: relative;
+    list-style: none;
+    &:hover {
+      background-color: white;
+    }
+  }
+}
+.sidebar .nav-links li.showMenu {
+  display: block;
+  background-color: white;
+  li a {
+    color: $primary;
+  }
+  color: $primary;
+  .link_name {
+    color: $primary;
+  }
+  i {
+    color: $primary;
+  }
+}
+.sidebar.close {
+  width: 78px;
+}
+.sidebar .logo-details {
+  height: 60px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+.sidebar .logo-details i {
+  font-size: 30px;
+  color: white;
+  height: 50px;
+  min-width: 78px;
+  text-align: center;
+  line-height: 50px;
+
+  a {
+    color: inherit;
+  }
+}
+.sidebar .logo-details .logo_name {
+  font-size: 25px;
+  color: #fff;
+  font-weight: 600;
+  transition: 0.3s ease;
+  // transition-delay: 0.1s;
+}
+.sidebar.close .logo-details .logo_name {
+  // transition-delay: 0s;
+  opacity: 0;
+  pointer-events: none;
+}
+.sidebar .nav-links {
+  height: 100%;
+  padding: 30px 0 150px 0;
+  overflow: auto;
+}
+.sidebar.close .nav-links {
+  overflow: visible;
+}
+.sidebar .nav-links::-webkit-scrollbar {
+  display: none;
+}
+
+.sidebar .nav-links > li.active:before,
+.sidebar .nav-links > li:before {
+  position: absolute;
+  left: 0;
+  top: 0;
+  content: "";
+  width: 4px;
+  height: 100%;
+  background: #93181a;
+  opacity: 0;
+  transition: all 0.3s ease-in-out;
+  border-top-right-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.sidebar:not(.close) .nav-links li:hover a::before,
+.sidebar:not(.close) .nav-links li.hovered a::before {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: -50px;
+  width: 50px;
+  height: 50px;
+  background-color: transparent;
+  border-radius: 50%;
+  transition: all 4s ease;
+  box-shadow: 35px 35px 0 10px var(--white);
+  pointer-events: none;
+}
+.sidebar:not(.close) .nav-links li:hover a::after,
+.sidebar:not(.close) .nav-links li.hovered a::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  transition: all 0.3s ease;
+  bottom: -50px;
+  width: 50px;
+  height: 50px;
+  background-color: transparent;
+  border-radius: 50%;
+  box-shadow: 35px -35px 0 10px var(--white);
+  pointer-events: none;
+}
+.sidebar .nav-links li.active:before,
+.sidebar .nav-links li:hover:before {
+  opacity: 1;
+}
+.sidebar .nav-links li .iocn-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.sidebar.close .nav-links li .iocn-link {
+  display: block;
+}
+.sidebar .nav-links li i {
+  height: 50px;
+  min-width: 78px;
+  text-align: center;
+  line-height: 50px;
+  color: #11101d;
+  font-size: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.sidebar .nav-links li.active i,
+.sidebar .nav-links li:hover i {
+  color: #93181a;
+}
+.sidebar .nav-links li.showMenu i.arrow {
+  transform: rotate(-180deg);
+}
+.sidebar.close .nav-links i.arrow {
+  display: none;
+}
+.sidebar .nav-links li a {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+.sidebar .nav-links li i {
+  color: white;
+}
+.sidebar .nav-links li a .link_name {
+  font-size: 16px;
+  font-weight: 400;
+  color: white;
+  transition: all 0.3s ease;
+}
+.sidebar .nav-links li.active a .link_name,
+.sidebar .nav-links li:hover a .link_name {
+  color: #93181a;
+}
+.sidebar.close .nav-links li a .link_name {
+  opacity: 0;
+  pointer-events: none;
+}
+.sidebar .nav-links li .sub-menu {
+  padding: 6px 6px 14px 80px;
+  margin-top: -10px;
+  background: $primary;
+  color: white;
+  display: none;
+}
+.sidebar .nav-links li.showMenu .sub-menu {
+  display: block;
+  background-color: white;
+  li a {
+    color: $primary;
+  }
+}
+
+.sidebar .nav-links li .sub-menu a {
+  color: white;
+  font-size: 15px;
+  padding: 5px 0;
+  white-space: nowrap;
+  opacity: 0.6;
+  transition: all 0.3s ease;
+}
+.sidebar .nav-links li .sub-menu a:hover {
+  opacity: 1;
+}
+.sidebar.close .nav-links li .sub-menu {
+  position: absolute;
+  left: 100%;
+  top: -10px;
+  margin-top: 0;
+  padding: 10px 20px;
+  border-radius: 0 6px 6px 0;
+  opacity: 0;
+  display: block;
+  pointer-events: none;
+  transition: 0s;
+}
+.sidebar.close .nav-links li:hover .sub-menu {
+  top: 0;
+  opacity: 1;
+  pointer-events: auto;
+  transition: all 0.3s ease;
+}
+.sidebar .nav-links li .sub-menu .link_name {
+  display: none;
+}
+.sidebar.close .nav-links li .sub-menu .link_name {
+  font-size: 18px;
+  opacity: 1;
+  display: block;
+}
+.sidebar .nav-links li .sub-menu.blank {
+  opacity: 1;
+  pointer-events: auto;
+  padding: 3px 20px 6px 16px;
+  opacity: 0;
+  pointer-events: none;
+}
+.sidebar .nav-links li:hover .sub-menu.blank {
+  top: 50%;
+  transform: translateY(-50%);
+}
+.sidebar .profile-details {
+  position: fixed;
+  bottom: 0;
+  width: 260px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #1d1b31;
+  padding: 12px 0;
+  transition: all 0.5s ease;
+}
+.sidebar.close .profile-details {
+  background: none;
+}
+.sidebar.close .profile-details {
+  width: 78px;
+}
+.sidebar .profile-details .profile-content {
+  display: flex;
+  align-items: center;
+}
+.sidebar .profile-details img {
+  height: 52px;
+  width: 52px;
+  object-fit: cover;
+  border-radius: 16px;
+  margin: 0 14px 0 12px;
+  background: #1d1b31;
+  transition: all 0.5s ease;
+}
+.sidebar.close .profile-details img {
+  padding: 10px;
+}
+.sidebar .profile-details .profile_name,
+.sidebar .profile-details .job {
+  color: #fff;
+  font-size: 16px;
+  font-weight: 400;
+  white-space: nowrap;
+}
+.sidebar .profile-details .job {
+  color: #fff;
+  font-size: 14px;
+  font-weight: 300;
+  opacity: 0.5;
+  white-space: nowrap;
+}
+.sidebar .profile-details i.bx {
+  min-width: 50px;
+}
+
+.sidebar.close .profile-details i,
+.sidebar.close .profile-details .profile_name,
+.sidebar.close .profile-details .job {
+  display: none;
+}
+.sidebar .profile-details .job {
+  font-size: 12px;
+}
+.home-section {
+  position: relative;
+  background: white;
+  height: 100vh;
+  left: 260px;
+  width: calc(100% - 260px);
+  transition: all 0.3s ease;
+}
+.sidebar.close ~ .home-section {
+  left: 78px;
+  width: calc(100% - 78px);
+}
+.home-section .home-content {
+  height: 60px;
+  display: flex;
+  align-items: center;
+}
+.home-section .home-content .bx-menu,
+.home-section .home-content .text {
+  color: #11101d;
+  font-size: 35px;
+}
+.home-section .home-content .bx-menu {
+  margin: 0 15px;
+  cursor: pointer;
+}
+.home-section .home-content .text {
+  font-size: 26px;
+  font-weight: 600;
+}
+@media (max-width: 500px) {
+  .sidebar.close .nav-links li .sub-menu {
+    display: none;
+  }
+  .sidebar {
+    display: none;
+  }
 }
 
 .topbar {
