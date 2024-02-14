@@ -12,12 +12,12 @@
         </a>
       </li>
       <li>
-        <a href="#">
+        <%= link_to root_path do %>
           <span class="icon">
             <ion-icon name="home-outline"></ion-icon>
           </span>
           <span class="title">Página inicial</span>
-        </a>
+        <% end %>
       </li>
       <li>
         <a href="#">
@@ -71,26 +71,21 @@
   </div>
 </div>
 <script>
-  let list = document.querySelectorAll(".navigation li");
-
   function activeLink() {
-    list.forEach((item) => {
-      item.classList.remove("hovered");
+    document.querySelectorAll(".navigation li").forEach((item) => {
+    item.classList.remove("hovered");
     });
     this.classList.add("hovered");
   }
 
-  list.forEach((item) => item.addEventListener("mouseover", activeLink));
+  document.querySelectorAll(".navigation li").forEach((item) => item.addEventListener("mouseover", activeLink));
 
-  // Menu Toggle
-  let toggle = document.querySelector(".toggle");
-  let navigation = document.querySelector(".navigation");
-  let dash = document.querySelector(".dash-container");
-  let main = document.querySelector(".main");
+  document.querySelector(".toggle").onclick = function () {
+    let navigation = document.querySelector(".navigation");
+    let dash = document.querySelector(".dash-container");
 
-  toggle.onclick = function () {
     navigation.classList.toggle("active");
     dash.classList.toggle("active");
-    main.classList.toggle("active");
+    document.querySelector('.main').classList.toggle("active");
   };
 </script>
