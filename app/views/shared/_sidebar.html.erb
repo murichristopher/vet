@@ -20,11 +20,18 @@
         <% end %>
       </li>
       <li>
-        <a href="#">
+        <a href="#" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">
           <span class="icon">
             <ion-icon name="clipboard-outline"></ion-icon>
           </span>
-          <span class="title">Atendimento</span>
+          <div id='voualteraronomedps'>
+            <span class="title">Atendimento</span>
+            <div class="collapse" id="home-collapse">
+              <%= link_to pets_path do%>
+                <h6>caramba</h6>
+              <% end %>
+            </div>
+          </div>
         </a>
       </li>
       <li>

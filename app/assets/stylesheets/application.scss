@@ -141,6 +141,23 @@ body {
   white-space: nowrap;
 }
 
+#home-collapse  a{
+  // background-color: blue !important;
+  all: unset;
+  margin: 10px;
+  cursor: pointer;
+  &:hover {
+    color: blue;
+  }
+
+  z-index: 999999;
+
+  // a {
+  //   all: unset;
+  //   display: none !important;
+  // }
+}
+
 /* --------- curve outside ---------- */
 .navigation ul li:hover a::before,
 .navigation ul li.hovered a::before {
