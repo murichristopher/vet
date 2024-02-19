@@ -1,10 +1,13 @@
 <div class="cardBox">
-  <div class="card">
-    <%= link_to customers_path do %>
+  <%= link_to customers_path do %>
+    <div class="card">
       <div>
-        <div class="numbers"><ion-icon name="person-outline"></ion-icon> <%= Customer.count %> Tuto</div>
+        <div class="numbers"><ion-icon name="person-outline"></ion-icon> <%= Customer.count %></div>
       </div>
-      <div class="iconBx d-flex" style="gap:0.2em; align-itens:center; justify-content:center;">
+      <div class="card-text">
+        <p>Tutores</p>
+      </div>
+      <div class="iconBx d-flex" style="gap:0.9em; align-itens:center; justify-content:center;">
         <%= button_to new_customer_path, method:"get", class:"btn btn-primary" do %>
           <i class="fa-solid fa-plus"></i>
         <% end %>
@@ -12,15 +15,18 @@
           <i class="fa-solid fa-magnifying-glass"></i>
         <% end %>
       </div>
-    <% end %>
-  </div>
+    </div>
+  <% end %>
   <div class="card">
     <div>
       <div class="numbers">
-        <ion-icon name="paw-outline"></ion-icon> <%= Pet.count %> Pets
+        <ion-icon name="paw-outline"></ion-icon> <%= Pet.count %>
       </div>
     </div>
-    <div class="iconBx d-flex" style="gap:0.2em; align-itens:center; justify-content:center;">
+    <div class="card-text">
+      <p>Pets</p>
+    </div>
+    <div class="iconBx d-flex" style="gap:0.9em; align-itens:center; justify-content:center;">
       <p class="card-text">
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newEntityModal">
           <i class="fa-solid fa-plus"></i>
@@ -49,20 +55,20 @@
   </div>
   <div class="card">
     <div>
-      <div class="numbers">Agenda</div>
-      <div class="cardName">Comments</div>
+      <div class="numbers"> <ion-icon name="calendar-outline"></ion-icon></div>
     </div>
-    <div class="iconBx">
-      <ion-icon name="chatbubbles-outline"></ion-icon>
+    <div class="card-text">
+      <p> Agenda </p>
+    </div>
+    <div class="iconBx d-flex">
+      <button class="btn btn-primary"> Acessar </button>
     </div>
   </div>
   <div class="card">
     <div>
-      <div class="numbers">Preço</div>
-      <div class="cardName">sei la mano</div>
+      <div class="numbers">Estoque</div>
     </div>
     <div class="iconBx">
-      <ion-icon name="cash-outline"></ion-icon>
     </div>
   </div>
 </div>
@@ -96,7 +102,7 @@
   <!-- ================= New Customers ================ -->
   <div class="recentCustomers">
     <div class="cardHeader">
-      <h2>Últimas comandas</h2>
+      <h2>Comandas Abertas</h2>
     </div>
   </div>
 </div>

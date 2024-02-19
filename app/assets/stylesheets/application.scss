@@ -224,7 +224,6 @@ body {
 .cardBox {
   position: relative;
   width: 100%;
-  padding: 20px;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 30px;
@@ -234,11 +233,22 @@ body {
   position: relative;
   background: var(--white);
   padding: 30px;
-  border-radius: 20px;
+  border-radius: 30px;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: center;
   cursor: pointer;
   box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+
+    -webkit-transform: translateY(0);
+    -moz-transform: translateY(0);
+    -ms-transform: translateY(0);
+    -o-transform: translateY(0);
+    transform: translateY(0);
+    -webkit-transition: 0.5s;
+    -o-transition: 0.5s;
+    -moz-transition: 0.5s;
+    transition: 0.5s;
 }
 
 .cardBox .card .numbers {
@@ -248,37 +258,28 @@ body {
   color: var(--blue);
 }
 
-.cardBox .card .cardName {
-  color: var(--black2);
-  font-size: 1.1rem;
-  margin-top: 5px;
+.cardBox .card .card-text {
+  font-weight: 500;
+  font-size: 1.6rem;
+  color: var(--blue);
 }
 
-.cardBox .card .iconBx {
-  font-size: 3.5rem;
-  color: var(--black2);
-}
 
 .cardBox .card:hover {
-  background: var(--blue);
+  background: rgb(253, 186, 186);
+   -webkit-transform: translateY(-8px);
+    -moz-transform: translateY(-8px);
+    -ms-transform: translateY(-8px);
+    -o-transform: translateY(-8px);
+    transform: translateY(-8px);
 }
 .cardBox .card:hover .numbers,
 .cardBox .card:hover .cardName,
 .cardBox .card:hover .iconBx {
-  color: var(--white);
+  color: var(--blue);
 }
 
 /* ================== Order Details List ============== */
-.details {
-  position: relative;
-  width: 100%;
-  padding: 20px;
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  grid-gap: 30px;
-  /* margin-top: 10px; */
-}
-
 .details .recentOrders {
   position: relative;
   display: grid;
@@ -376,6 +377,7 @@ body {
   display: grid;
   min-height: 500px;
   padding: 20px;
+  margin-top: 30px;
   background: var(--white);
   box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
   border-radius: 20px;
