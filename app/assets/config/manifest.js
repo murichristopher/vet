@@ -1,3 +1,5 @@
 //= link_tree ../images
 //= link_tree ../builds
-//= link teste.css
+//= link_tree ../stylesheets
+//= link devise/sessions.css
+//= link inventory_items.css

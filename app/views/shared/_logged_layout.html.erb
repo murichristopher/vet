@@ -1,0 +1,60 @@
+<div class="dash-container">
+  <%= render 'shared/sidebar' %>
+  <div class='main'>
+    <%= render 'shared/topbar' %>
+    <div class='py-4 px-4'>
+      <% if content_for?(:item) %>
+        <%= content_for :item %>
+      <% end %>
+      <div class='d-flex flex-column gap-4 mt-3'>
+        <%= yield %>
+      </div>
+    </div>
+  </div>
+  <%# <script>
+    var arrow = document.querySelectorAll(".arrow");
+    for (var i = 0; i < arrow.length; i++) {
+      arrow[i].addEventListener("click", (e) => {
+        var arrowParent = e.target.parentElement.parentElement; //selecting main parent of arrow
+        arrowParent.classList.toggle("showMenu");
+      });
+    }
+    var sidebar = document.querySelector(".sidebar");
+    var sidebarBtn = document.querySelector(".bx-menu");
+    console.log(sidebarBtn);
+
+    // Check and apply the saved state from localStorage on page load
+    if (localStorage.getItem('sideBarClosed') === 'true') {
+      sidebar.classList.add("close");
+    } else {
+      sidebar.classList.remove("close");
+    }
+
+    sidebarBtn.addEventListener("click", () => {
+      var isClosed = sidebar.classList.toggle("close");
+      localStorage.setItem('sideBarClosed', isClosed); // Save the current state
+    });
+  </script> %>
+  <script>
+    // add hovered class to selected list item
+    var list = document.querySelectorAll(".navigation li");
+
+    function activeLink() {
+      list.forEach((item) => {
+        item.classList.remove("hovered");
+      });
+      this.classList.add("hovered");
+    }
+
+    list.forEach((item) => item.addEventListener("mouseover", activeLink));
+
+    // Menu Toggle
+    var toggle = document.querySelector(".toggle");
+    var navigation = document.querySelector(".navigation");
+    var main = document.querySelector(".main");
+
+    toggle.onclick = function () {
+      navigation.classList.toggle("active");
+      main.classList.toggle("active");
+    };
+  </script>

@@ -1,134 +1,102 @@
-<div class="row gx-3 gy-3">
-  <div class="col-12 col-md-6 col-lg-3">
-    <div class="card h-100">
-      <div class="card-body d-flex flex-column align-items-center gap-1">
-        <div class="d-flex justify-content-center align-items-center gap-2">
-          <i class="fa-solid fa-user icon"></i>
-          <h2 class="card"> <%= pluralize(Customer.count, 'tutor', 'tutores') %></h2>
+<div class="cardBox">
+  <div class="card">
+    <%= link_to customers_path do %>
+      <div>
+        <div class="numbers"><ion-icon name="person-outline"></ion-icon> <%= Customer.count %> Tuto</div>
+      </div>
+      <div class="iconBx d-flex" style="gap:0.2em; align-itens:center; justify-content:center;">
+        <%= button_to new_customer_path, method:"get", class:"btn btn-primary" do %>
+          <i class="fa-solid fa-plus"></i>
+        <% end %>
+        <%= button_to customers_path, method:"get", class:"btn btn-primary" do %>
+          <i class="fa-solid fa-magnifying-glass"></i>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+  <div class="card">
+    <div>
+      <div class="numbers">
+        <ion-icon name="paw-outline"></ion-icon> <%= Pet.count %> Pets
+      </div>
+    </div>
+    <div class="iconBx d-flex" style="gap:0.2em; align-itens:center; justify-content:center;">
+      <p class="card-text">
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newEntityModal">
+          <i class="fa-solid fa-plus"></i>
+        </button>
+      </p>
+      <p class="card-text">
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#searchModal">
+          <i class="fa-solid fa-magnifying-glass" style="font-size: 16px;"></i>
+        </button>
+      </p>
+    </div>
+  </div>
+  <%= render 'pets/modal_form'%>
+  <div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="searchModalLabel">Pesquisar Pet</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <div class="d-flex justify-content-center align-itens-center gap-1">
-          <p class="card-text">
-            <%= button_to new_customer_path, method:"get", class:"btn btn-primary" do %>
-              <i class="fa-solid fa-plus"></i>
-            <% end %>
-          </p>
-          <p class="card-text">
-            <%= button_to customers_path, method:"get", class:"btn btn-primary" do %>
-              <i class="fa-solid fa-magnifying-glass"></i>
-            <% end %>
-          </p>
+        <div class="modal-body">
+          <%= render 'pets/search'%>
         </div>
       </div>
     </div>
   </div>
-  <div class="col-12 col-md-6 col-lg-3">
-    <div class="card h-100">
-      <div class="card-body d-flex flex-column align-items-center gap-1">
-        <div class="d-flex justify-content-center align-items-center gap-2">
-          <i class="fa-solid fa-paw icon"></i>
-          <h2 class="card"> <%= pluralize(Pet.active.count, 'pet', 'pets') %></h2>
-        </div>
-        <div class="d-flex justify-content-center align-itens-center gap-1">
-          <p class="card-text">
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newEntityModal">
-              <i class="fa-solid fa-plus"></i>
-            </button>
-            <%= render 'pets/modal_form'%>
-          </p>
-          <p class="card-text">
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#searchModal">
-              <i class="fa-solid fa-magnifying-glass" style="font-size: 16px;"></i>
-            </button>
-            <div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="searchModalLabel" aria-hidden="true">
-              <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="searchModalLabel">Pesquisar Pet</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                  </div>
-                  <div class="modal-body">
-                    <%= render 'pets/search'%>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </p>
-        </div>
-      </div>
+  <div class="card">
+    <div>
+      <div class="numbers">Agenda</div>
+      <div class="cardName">Comments</div>
+    </div>
+    <div class="iconBx">
+      <ion-icon name="chatbubbles-outline"></ion-icon>
     </div>
   </div>
-  <div class="col-12 col-md-6 col-lg-3">
-    <div class="card h-100">
-      <div class="card-body d-flex flex-column align-items-center gap-1">
-        <div class="d-flex justify-content-center align-items-center gap-2">
-          <i class="bi bi-calendar-week icon" style="font-size: 30px;"></i>
-          <h2 class="card">Agenda</h2>
-        </div>
-        <div class="d-flex justify-content-center align-itens-center gap-1">
-          <p class="card-text">
-            <%= button_to pets_path, method: "get", class: "btn btn-primary" do %>
-              <i class="fa-solid fa-magnifying-glass" style="font-size: 16px;"></i>
-            <% end %>
-          </p>
-        </div>
-      </div>
+  <div class="card">
+    <div>
+      <div class="numbers">Preço</div>
+      <div class="cardName">sei la mano</div>
     </div>
-  </div>
-  <div class="col-12 col-md-6 col-lg-3">
-    <div class="card h-100">
-      <div class="card-body d-flex flex-column align-items-center gap-1">
-        <div class="d-flex justify-content-center align-items-center gap-2">
-          <i class="fa-solid fa-dollar-sign icon"></i>
-          <h2 class="card">Preço</h2>
-        </div>
-        <div class="d-flex justify-content-center align-itens-center gap-1">
-          <p class="card-text">
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#searchModalInventory">
-              <i class="fa-solid fa-magnifying-glass" style="font-size: 16px;"></i>
-            </button>
-            <div class="modal fade" id="searchModalInventory" tabindex="-1" aria-labelledby="searchModalInventoryLabel" aria-hidden="true">
-              <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="searchModalInventoryLabel">Pesquisar Item</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                  </div>
-                  <div class="modal-body">
-                    <%= render 'inventory_items/search'%>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </p>
-        </div>
-      </div>
+    <div class="iconBx">
+      <ion-icon name="cash-outline"></ion-icon>
     </div>
   </div>
 </div>
-<hr />
-<p class="text-success"><%= notice %></p>
-<div class="container p-5">
-  <h1 class="mb-3">Esteira</h1>
-  <div id="service_queue_items" class="row">
-    <% @service_queue_items.each do |service_queue_item| %>
-      <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
-        <div class="card h-100">
-          <div class="card-body">
-            <h5 class="card-title"><%= service_queue_item.queue_name %></h5>
-            <p class="card-text">
-              <strong>Criado em:</strong> <%= service_queue_item.created_at.strftime("%d/%m/%Y às %H:%M") %>
-              (<%= time_ago_in_words(service_queue_item.created_at) %> atrás)<br>
-              <strong>Customer ID:</strong> <%= service_queue_item.customer_id %><br>
-              <strong>Pet ID:</strong> <%= service_queue_item.pet_id %><br>
-              <strong>Status:</strong> <%= service_queue_item.status %><br>
-              <strong>Urgency:</strong> <%= service_queue_item.urgency ? 'Yes' : 'No' %>
-            </p>
-          </div>
-          <div class="card-footer">
-            <%= link_to "Concluido", service_order_service_queue_items_path(service_queue_item), class: "btn btn-primary" %>
-          </div>
-        </div>
-      </div>
-    <% end %>
+<div class="details">
+  <div class="recentOrders">
+    <div class="cardHeader">
+      <h2>Esteira de atendimento</h2>
+      <%= link_to service_order_service_queue_items_path(1), class: 'btn' do %>
+        Acessar
+      <% end %>
+    </div>
+    <table>
+      <tr>
+        <thead>
+          <td>Tutor</td>
+          <td>Pet</td>
+          <td>Status</td>
+        </tr>
+      </thead>
+      <tbody>
+        <% @service_queue_items.each do |sqi| %>
+          <tr>
+            <td><%= sqi.customer.full_name %></td>
+            <td><%= sqi.pet&.name  %></td>
+            <td><span class="status delivered">Delivered</span></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <!-- ================= New Customers ================ -->
+  <div class="recentCustomers">
+    <div class="cardHeader">
+      <h2>Últimas comandas</h2>
+    </div>
   </div>
 </div>

@@ -10,4 +10,10 @@ Rails.application.config.assets.paths << Rails.root.join("node_modules/bootstrap
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in the app/assets
 # folder are already added.
-# Rails.application.config.assets.precompile += %w( admin.js admin.css )
+
+# Precompile any assets that match the pattern of 'controller_name.scss'
+Rails.application.config.assets.precompile += Dir[Rails.root.join('app', 'assets', 'stylesheets', '**', '*.scss')].map{ |path|
+  Pathname.new(path).basename.to_s.sub(/\.scss\z/, '')
+}
+
+# Rails.application.config.assets.precompile += %w( *.js *.css )

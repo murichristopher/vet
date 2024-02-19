@@ -1,25 +1,42 @@
 <% content_for :item do %>
-  <%= button_to 'Editar', edit_pet_path(@pet), method: :get, class: "btn btn-warning bi-pen"%>
-  <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deletePetModal" data-pet-id="<%= @pet.id %>">
-    <i class="bi bi-trash"></i> Deletar
-  </button>
+  <div class="d-flex justify-content-between align-items-center ">
+    <h1>Pets</h1>
+    <%= render 'search', search_term: params[:search] %>
+    <div class='d-flex gap-2 justify-content-center align-items-center'>
+      <%= button_to 'Editar', edit_pet_path(@pet), method: :get, class: "btn btn-warning bi-pen"%>
+      <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deletePetModal" data-pet-id="<%= @pet.id %>">
+        <i class="bi bi-trash"></i> Deletar
+      </button>
+      <%= link_to :back, class: "btn btn-secondary d-flex align-items-center gap-2" do %>
+        <i class="bi bi-arrow-left"></i> Voltar
+      <% end %>
+    </div>
+  </div>
 <% end %>
-<div id="<%= dom_id(@pet) %>" class="card mb-3 shadow-sm">
+<div id="<%= dom_id(@pet) %>" class="card mb-3 shadow">
   <div class="card-header bg-primary text-white">
-    Detalhes do Pet
+    <i class="fas fa-paw"></i> Detalhes do Pet
   </div>
   <div class="card-body">
-    <h5 class="card-title"><%= @pet.name %></h5>
+    <h5 class="card-title text-center">
+      <%= @pet.name %>
+    </h5>
+    <div class="text-center mb-3">
+      <img src="<%= asset_path('no-image.png') %>" class="img-thumbnail" alt="No image available">
+      <%# <% if @pet.image.attached? %>
+      <%# <img src="<%= url_for(@pet.image.variant(resize_to_limit: [500, 500]))" class="img-thumbnail" alt="<%= @pet.name %>
+      <%# <% else %>
+      <%# <% end %>
+    </div>
     <p class="card-text">
-      <strong>Tutor:</strong> <%= link_to @pet.customer.full_name, customer_path(@pet.customer) %><br>
+      <i class="fas fa-user"></i> <strong>Tutor:</strong> <%= link_to @pet.customer.full_name, customer_path(@pet.customer) %>
     </p>
-    <% if @pet.image.attached? %>
-      <img src="<%= url_for(@pet.image.variant(resize_to_limit: [500, 500])) %>" class="img-fluid rounded mb-3" alt="<%= @pet.name %>">
-    <% else %>
-      <img src="<%= asset_path('no-image.png') %>" class="img-fluid rounded mb-3" alt="No image available">
-    <% end %>
-    <p class="card-text"><strong>Race:</strong> <%= @pet.race %></p>
-    <p class="card-text"><strong>Weight:</strong> <%= @pet.weight %>kg</p>
+    <p class="card-text">
+      <i class="fas fa-dog"></i> <strong>Raça:</strong> <%= @pet.race %>
+    </p>
+    <p class="card-text">
+      <i class="fas fa-weight"></i> <strong>Peso:</strong> <%= @pet.weight %>kg
+    </p>
   </div>
 </div>
 <div class="modal fade" id="deletePetModal" tabindex="-1" aria-labelledby="deletePetModalLabel" aria-hidden="true">

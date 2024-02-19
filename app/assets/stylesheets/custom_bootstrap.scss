@@ -1,8 +1,9 @@
 // Required
+
 @import "bootstrap/scss/functions";
 
 // Default variable overrides
-$primary: #725ac1; // New color: green
+$primary: #bf324c; // New color: green
 @import "bootstrap/scss/variables";
 @import "bootstrap/scss/mixins";
 @import "bootstrap/scss/root";
@@ -18,6 +19,10 @@ $primary: #725ac1; // New color: green
     opacity: 0.6;
     border-color: $primary;
   }
+}
+
+.bg-primary {
+  background-color: $primary !important;
 }
 
 .btn-outline-primary {

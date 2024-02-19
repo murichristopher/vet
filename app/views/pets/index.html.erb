@@ -1,57 +1,56 @@
 <% content_for :item do %>
-  <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#newEntityModal">
-    <i class="bi bi-plus-lg"></i> Novo Pet
-  </button>
-<% end %>
-<div class="container py-3">
-  <div class="d-flex justify-content-between mb-3">
+  <div class="d-flex justify-content-between align-items-center ">
     <h1>Pets</h1>
     <%= render 'search', search_term: params[:search] %>
+    <div class='d-flex gap-2 justify-content-center align-items-center'>
+      <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#newEntityModal">
+        <i class="bi bi-plus-lg"></i> Novo Pet
+      </button>
+      <%= link_to :back, class: "btn btn-secondary d-flex align-items-center gap-2" do %>
+        <i class="bi bi-arrow-left"></i> Voltar
+      <% end %>
+    </div>
   </div>
-  <div class="column" id="pets">
-    <% if @pets.empty? && params[:search].present? %>
-      <div class="text-center my-5">
-        <i class="bi bi-search" style="font-size: 2rem;"></i>
-        <h2>Nenhum resultado encontrado para: <%= truncate(params[:search], length: 10) %></h2>
-        <p>Sua busca não retornou nenhum pet. Por favor, tente outros termos.</p>
-      </div>
-    <% elsif @pets.empty? %>
-      <div class="text-center my-5">
-        <i class="bi bi-exclamation-triangle" style="font-size: 2rem;"></i>
-        <h2>Nenhum Pet Cadastrado</h2>
-        <p>Atualmente não há pets cadastrados no sistema.</p>
-      </div>
-    <% else %>
-      <div class="column" id="pets">
-        <% @pets.each do |pet| %>
-          <div class="col-12 col-sm-12 col-md-12 col-lg-12 mb-4">
-            <div class="card h-100">
-              <div class="card-body d-flex justify-content-between">
-                <div class="d-flex gap-3 align-items-center">
-                  <% if pet.image.attached? %>
-                    <%= image_tag pet.image.variant(resize_to_limit: [100, 100]) %>
-                  <% else %>
-                    <%= image_tag 'no-image.png', size: "100x100" %>
-                  <% end %>
-                  <div>
-                    <h6 class="card-title"><%= pet.formatted_name %></h6>
-                    <p class="card-text">
-                      <strong>Tutor:</strong> <%= link_to pet.customer.full_name, customer_path(pet.customer) %><br>
-                      <%= pet.race %> | <%= pet.weight %>kg
-                    </p>
-                  </div>
+<% end %>
+<div class="column" id="pets">
+  <% if @pets.empty? && params[:search].present? %>
+    <div class="text-center my-5">
+      <i class="bi bi-search" style="font-size: 2rem;"></i>
+      <h2>Nenhum resultado encontrado para: <%= truncate(params[:search], length: 10) %></h2>
+      <p>Sua busca não retornou nenhum pet. Por favor, tente outros termos.</p>
+    </div>
+  <% elsif @pets.empty? %>
+    <div class="text-center my-5">
+      <i class="bi bi-exclamation-triangle" style="font-size: 2rem;"></i>
+      <h2>Nenhum Pet Cadastrado</h2>
+      <p>Atualmente não há pets cadastrados no sistema.</p>
+    </div>
+  <% else %>
+    <div class="column" id="pets">
+      <% @pets.each do |pet| %>
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12 mb-4">
+          <div class="card h-100">
+            <div class="card-body d-flex justify-content-between">
+              <div class="d-flex gap-3 align-items-center">
+                <%= image_tag 'no-image.png', size: "100x100" %>
+                <div>
+                  <h6 class="card-title"><%= pet.formatted_name %></h6>
+                  <p class="card-text">
+                    <strong>Tutor:</strong> <%= link_to pet.customer.full_name, customer_path(pet.customer) %><br>
+                    <%= pet.race %> | <%= pet.weight %>kg
+                  </p>
                 </div>
-                <div class="d-flex justify-content-center align-items-center gap-2">
-                  <%= link_to 'Detalhes', pet_path(pet), class: "btn btn-primary h-50" %>
-                  <%= link_to 'Criar comanda', new_customer_path(pet_id: pet.id), class: "btn btn-outline-primary h-50" %>
-                </div>
+              </div>
+              <div class="d-flex justify-content-center align-items-center gap-2">
+                <%= link_to 'Detalhes', pet_path(pet), class: "btn btn-primary h-50" %>
+                <%= link_to 'Criar comanda', new_customer_path(pet_id: pet.id), class: "btn btn-outline-primary h-50" %>
               </div>
             </div>
           </div>
-        <% end %>
-      </div>
-    <% end %>
-  </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
 </div>
 <div class="modal fade" id="deletePetModal" tabindex="-1" aria-labelledby="deletePetModalLabel" aria-hidden="true">
   <div class="modal-dialog">

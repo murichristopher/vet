@@ -1,0 +1,29 @@
+<div class="topbar">
+  <%# <div class="toggle">
+    <ion-icon name="menu-outline"></ion-icon>
+  </div> %>
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb text-center m0-auto m-0">
+      <% breadcrumbs.each do |breadcrumb| %>
+        <% if breadcrumb.path.present? %>
+          <li class="breadcrumb-item">
+            <%= link_to breadcrumb.name, send(breadcrumb.path) %>
+          </li>
+        <% else %>
+          <li class="breadcrumb-item active" aria-current="page">
+            <%= breadcrumb.name %>
+          </li>
+        <% end %>
+      <% end %>
+    </ol>
+  </nav>
+  <div class="search">
+    <label>
+      <input type="text" placeholder="Pesquisar">
+      <ion-icon name="search-outline"></ion-icon>
+    </label>
+  </div>
+  <div class="user">
+    <%= image_tag 'hospitalvet2'%>
+  </div>
+</div>
