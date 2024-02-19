@@ -12,7 +12,9 @@ class PetsController < ApplicationController
   end
 
   # GET /pets/1 or /pets/1.json
-  def show; end
+  def show
+    add_breadcrumb @pet.name
+  end
 
   def new
     add_breadcrumb "Novo pet", :new_pet_path

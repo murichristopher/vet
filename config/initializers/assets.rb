@@ -16,4 +16,4 @@ Rails.application.config.assets.precompile += Dir[Rails.root.join('app', 'assets
   Pathname.new(path).basename.to_s.sub(/\.scss\z/, '')
 }
 
-Rails.application.config.assets.precompile += %w( dashboard.css)
+# Rails.application.config.assets.precompile += %w( *.js *.css )

@@ -1,29 +1,51 @@
 <div class="cardBox">
   <div class="card">
-    <div>
-      <div class="numbers"><ion-icon name="person-outline"></ion-icon> <%= Customer.count %> Tutores</div>
-    </div>
-    <div class="iconBx d-flex" style="gap:0.2em; align-itens:center; justify-content:center;">
-      <%= button_to new_customer_path, method:"get", class:"btn btn-primary" do %>
-        <i class="fa-solid fa-plus"></i>
-      <% end %>
-      <%= button_to customers_path, method:"get", class:"btn btn-primary" do %>
-        <i class="fa-solid fa-magnifying-glass"></i>
-      <% end %>
-    </div>
-  </div>
-  <div class="card">
-    <%= link_to pets_path do %>
+    <%= link_to customers_path do %>
       <div>
-        <div class="numbers">
-          <ion-icon name="paw-outline"></ion-icon> <%= Pet.count %>
-        </div>
-        <div class="cardName">Pets cadastrados</div>
+        <div class="numbers"><ion-icon name="person-outline"></ion-icon> <%= Customer.count %> Tuto</div>
       </div>
-      <div class="iconBx">
-        <ion-icon name="cart-outline"></ion-icon>
+      <div class="iconBx d-flex" style="gap:0.2em; align-itens:center; justify-content:center;">
+        <%= button_to new_customer_path, method:"get", class:"btn btn-primary" do %>
+          <i class="fa-solid fa-plus"></i>
+        <% end %>
+        <%= button_to customers_path, method:"get", class:"btn btn-primary" do %>
+          <i class="fa-solid fa-magnifying-glass"></i>
+        <% end %>
       </div>
     <% end %>
+  </div>
+  <div class="card">
+    <div>
+      <div class="numbers">
+        <ion-icon name="paw-outline"></ion-icon> <%= Pet.count %> Pets
+      </div>
+    </div>
+    <div class="iconBx d-flex" style="gap:0.2em; align-itens:center; justify-content:center;">
+      <p class="card-text">
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newEntityModal">
+          <i class="fa-solid fa-plus"></i>
+        </button>
+      </p>
+      <p class="card-text">
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#searchModal">
+          <i class="fa-solid fa-magnifying-glass" style="font-size: 16px;"></i>
+        </button>
+      </p>
+    </div>
+  </div>
+  <%= render 'pets/modal_form'%>
+  <div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="searchModalLabel">Pesquisar Pet</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <%= render 'pets/search'%>
+        </div>
+      </div>
+    </div>
   </div>
   <div class="card">
     <div>
@@ -48,66 +70,26 @@
   <div class="recentOrders">
     <div class="cardHeader">
       <h2>Esteira de atendimento</h2>
-      <a href="#" class="btn"> slaa</a>
+      <%= link_to service_order_service_queue_items_path(1), class: 'btn' do %>
+        Acessar
+      <% end %>
     </div>
     <table>
-      <thead>
-        <tr>
+      <tr>
+        <thead>
           <td>Tutor</td>
           <td>Pet</td>
-          <td>Cachorro</td>
-          <td>Corno</td>
+          <td>Status</td>
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>Manuela</td>
-          <td>gordo</td>
-          <td>pintp</td>
-          <td><span class="status delivered">Delivered</span></td>
-        </tr>
-        <tr>
-          <td>Pedro</td>
-          <td>pedro cat</td>
-          <td>pinto</td>
-          <td><span class="status pending">Pending</span></td>
-        </tr>
-        <tr>
-          <td>joao</td>
-          <td>vagabundp</td>
-          <td>pinto</td>
-          <td><span class="status return">Return</span></td>
-        </tr>
-        <tr>
-          <td>Addidas Shoes</td>
-          <td>$620</td>
-          <td>Due</td>
-          <td><span class="status inProgress">In Progress</span></td>
-        </tr>
-        <tr>
-          <td>Star Refrigerator</td>
-          <td>$1200</td>
-          <td>Paid</td>
-          <td><span class="status delivered">Delivered</span></td>
-        </tr>
-        <tr>
-          <td>Dell Laptop</td>
-          <td>$110</td>
-          <td>Due</td>
-          <td><span class="status pending">Pending</span></td>
-        </tr>
-        <tr>
-          <td>Apple Watch</td>
-          <td>$1200</td>
-          <td>Paid</td>
-          <td><span class="status return">Return</span></td>
-        </tr>
-        <tr>
-          <td>Addidas Shoes</td>
-          <td>$620</td>
-          <td>Due</td>
-          <td><span class="status inProgress">In Progress</span></td>
-        </tr>
+        <% @service_queue_items.each do |sqi| %>
+          <tr>
+            <td><%= sqi.customer.full_name %></td>
+            <td><%= sqi.pet&.name  %></td>
+            <td><span class="status delivered">Delivered</span></td>
+          </tr>
+        <% end %>
       </tbody>
     </table>
   </div>

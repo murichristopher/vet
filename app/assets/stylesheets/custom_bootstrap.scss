@@ -21,6 +21,10 @@ $primary: #bf324c; // New color: green
   }
 }
 
+.bg-primary {
+  background-color: $primary !important;
+}
+
 .btn-outline-primary {
   border-color: $primary;
 
