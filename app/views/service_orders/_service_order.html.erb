@@ -11,5 +11,6 @@
     <%= link_to "Editar comanda", edit_service_order_path(service_order), class: "btn btn-primary" %>
     <%= button_to "Excluir comanda", service_order, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
     <%= button_to "Encaminhar para a esteira", new_service_order_service_queue_item_path(service_order_id: service_order.id), method: :get, class: "btn btn-info" %>
+    <%= link_to "Imprimir comanda", service_order_path(service_order, format: :pdf), class: "btn btn-danger", target: "_blank" %>
   </div>
 </div>

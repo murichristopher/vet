@@ -9,7 +9,23 @@ class ServiceOrdersController < ApplicationController
   end
 
   # GET /service_orders/1 or /service_orders/1.json
-  def show; end
+  def show
+    @logo = "#{Rails.root}/app/assets/images/hospitalvet2.png"
+    pdf = Prawn::Document.new
+    pdf.text("Prawn Rocks")
+    pdf.render_file('prawn.pdf')
+
+    @termos = [
+      'Termo 1',
+      'Termo 2',
+      'Termo 3'
+    ]
+
+    respond_to do |format|
+      format.html
+      format.pdf { render pdf: 'termos' }
+    end
+  end
 
   # GET /service_orders/new
   def new

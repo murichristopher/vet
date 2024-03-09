@@ -2,9 +2,6 @@ class CustomersController < ApplicationController
   before_action :set_customer, only: %i[show edit update destroy]
   add_breadcrumb "Tutores", :customers_path
 
-  def show
-    add_breadcrumb @customer.full_name, customer_path(@customer)
-  end
 
   # GET /customers or /customers.json
   def index
@@ -27,7 +24,7 @@ class CustomersController < ApplicationController
     ]
 
     respond_to do |format|
-      format.html # Adicione esta linha
+      format.html
       format.pdf { render pdf: 'termos' }
     end
   end

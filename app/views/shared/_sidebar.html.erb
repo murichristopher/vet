@@ -1,28 +1,36 @@
 <div class="navigation">
   <ul>
     <li>
-      <a href="#">
+      <%= link_to root_path do%>
         <span class="icon">
           <ion-icon name="paw-outline"></ion-icon>
         </span>
         <span class="title"> Petus</span>
-      </a>
+      <% end %>
     </li>
     <li>
       <%= link_to root_path do%>
         <span class="icon">
           <ion-icon name="home-outline"></ion-icon>
         </span>
-        <span class="title">Página inicial</span>
+        <span class="title"> Página inicial</span>
       <% end %>
     </li>
     <li>
-      <a href="#">
+      <%= link_to customers_path do%>
         <span class="icon">
-          <ion-icon name="clipboard-outline"></ion-icon>
+          <ion-icon name="person-outline"></ion-icon>
         </span>
-        <span class="title">Atendimento</span>
-      </a>
+        <span class="title">Tutores</span>
+      <% end %>
+    </li>
+    <li>
+      <%= link_to pets_path do%>
+        <span class="icon">
+          <ion-icon name="paw-outline"></ion-icon>
+        </span>
+        <span class="title">Pets</span>
+      <% end %>
     </li>
     <li>
       <a href="https://axochat.vercel.app/">
@@ -41,28 +49,28 @@
       <% end %>
     </li>
     <li>
-      <a href="#">
+      <%= link_to hospitalization_items_path do%>
         <span class="icon">
           <ion-icon name="medkit-outline"></ion-icon>
         </span>
         <span class="title">Internação</span>
-      </a>
+      <% end %>
     </li>
     <li>
-      <a href="#">
+      <%= link_to service_orders_path do%>
         <span class="icon">
-          <ion-icon name="settings-outline"></ion-icon>
+          <ion-icon name="pencil-outline"></ion-icon>
         </span>
-        <span class="title">Configurações</span>
-      </a>
+        <span class="title">Comandas</span>
+      <% end %>
     </li>
     <li>
-      <a href="#">
+      <%= link_to service_order_service_queue_items_path(329) do%>
         <span class="icon">
           <ion-icon name="log-out-outline"></ion-icon>
         </span>
-        <span class="title">Sair</span>
-      </a>
+        <span class="title">Esteira</span>
+      <% end %>
     </li>
   </ul>
 </div>

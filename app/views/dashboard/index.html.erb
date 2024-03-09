@@ -85,7 +85,8 @@
         <thead>
           <td>Tutor</td>
           <td>Pet</td>
-          <td>Status</td>
+          <td>Atendimento</td>
+          <td>Urgência</td>
         </tr>
       </thead>
       <tbody>
@@ -93,7 +94,7 @@
           <tr>
             <td><%= sqi.customer.full_name %></td>
             <td><%= sqi.pet&.name  %></td>
-            <td><span class="status delivered">Delivered</span></td>
+            <td><span class="status delivered">Aguardando</span></td>
           </tr>
         <% end %>
       </tbody>
