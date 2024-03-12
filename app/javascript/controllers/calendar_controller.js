@@ -2,6 +2,7 @@ import { Controller } from "@hotwired/stimulus";
 import { Calendar } from "@fullcalendar/core";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin from "@fullcalendar/interaction";
+import timeGridPlugin from "@fullcalendar/timegrid";
 import { Modal } from "bootstrap";
 
 class AddEventModal {
@@ -87,14 +88,14 @@ export default class extends Controller {
   async initializeCalendar() {
     const calendarEl = this.calendarTarget;
     const events = await this.getEvents();
-
     this.calendar = new Calendar(calendarEl, {
-      plugins: [dayGridPlugin, interactionPlugin],
-      editable: true,
-      selectable: true,
-      droppable: true,
-      events: events,
-      dateClick: this.handleDateClick.bind(this),
+      plugins: [timeGridPlugin],
+      initialView: "timeGridWeek",
+      headerToolbar: {
+        left: "prev,next today",
+        center: "title",
+        right: "dayGridMonth,timeGridWeek,timeGridDay",
+      },
     });
 
     this.calendar.render();
@@ -123,7 +124,7 @@ export default class extends Controller {
   saveCalendarState() {
     // You should send the current state of the calendar to the backend here
     // For example, you can send the calendar's events data
-    debugger
+
     const events = this.calendar.getEvents().map((event) => ({
       title: event.title,
       start: event.startStr,

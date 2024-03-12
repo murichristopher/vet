@@ -4,4 +4,5 @@ class DashboardController < ApplicationController
   end
 
   def calendar; end
+  def calendar2; end
 end

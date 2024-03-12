@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   # end
 
   get "/calendar", to: "dashboard#calendar"
+  get "/calendar2", to: "dashboard#calendar2"
   post "/save-calendar-state", to: "dashboard#save-calendar-state"
 
   unauthenticated do
