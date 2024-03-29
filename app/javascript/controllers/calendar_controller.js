@@ -4,7 +4,7 @@ import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import { Modal } from "bootstrap";
-
+import esLocale from "@fullcalendar/core/locales/pt-br";
 class AddEventModal {
   constructor(element, callback) {
     this.element = new Modal(element);
@@ -21,6 +21,7 @@ class AddEventModal {
     this.element.show();
     this.bindEvents();
   }
+
   bindEvents() {
     const onSaveButtonClick = () => {
       const { EVENT_NAME_INPUT } = this.actionElements;
@@ -88,14 +89,33 @@ export default class extends Controller {
   async initializeCalendar() {
     const calendarEl = this.calendarTarget;
     const events = await this.getEvents();
+
     this.calendar = new Calendar(calendarEl, {
-      plugins: [timeGridPlugin],
+      plugins: [timeGridPlugin, interactionPlugin],
+      editable: true,
+      locale: "pt-br",
       initialView: "timeGridWeek",
+      selectable: true,
+      droppable: true,
+      events: events,
+      dateClick: this.handleDateClick.bind(this),
+      businessHours: true,
       headerToolbar: {
         left: "prev,next today",
         center: "title",
         right: "dayGridMonth,timeGridWeek,timeGridDay",
       },
+      slotMinTime: "08:00:00",
+      slotMaxTime: "18:00:00", // Do not display hours after 9 PM.
+      eventColor: "#BF324C", // Default color for all events, green in this case.
+      hiddenDays: [0, 6], // Hides Sunday
+      businessHours: [
+        {
+          daysOfWeek: [1, 2, 3, 4, 5], // Monday to Friday
+          startTime: "08:00", // 8am
+          endTime: "18:00", // 6pm
+        },
+      ],
     });
 
     this.calendar.render();

@@ -240,15 +240,15 @@ body {
   cursor: pointer;
   box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
 
-    -webkit-transform: translateY(0);
-    -moz-transform: translateY(0);
-    -ms-transform: translateY(0);
-    -o-transform: translateY(0);
-    transform: translateY(0);
-    -webkit-transition: 0.5s;
-    -o-transition: 0.5s;
-    -moz-transition: 0.5s;
-    transition: 0.5s;
+  -webkit-transform: translateY(0);
+  -moz-transform: translateY(0);
+  -ms-transform: translateY(0);
+  -o-transform: translateY(0);
+  transform: translateY(0);
+  -webkit-transition: 0.5s;
+  -o-transition: 0.5s;
+  -moz-transition: 0.5s;
+  transition: 0.5s;
 }
 
 .cardBox .card .numbers {
@@ -264,14 +264,13 @@ body {
   color: var(--blue);
 }
 
-
 .cardBox .card:hover {
   background: rgb(253, 186, 186);
-   -webkit-transform: translateY(-8px);
-    -moz-transform: translateY(-8px);
-    -ms-transform: translateY(-8px);
-    -o-transform: translateY(-8px);
-    transform: translateY(-8px);
+  -webkit-transform: translateY(-8px);
+  -moz-transform: translateY(-8px);
+  -ms-transform: translateY(-8px);
+  -o-transform: translateY(-8px);
+  transform: translateY(-8px);
 }
 .cardBox .card:hover .numbers,
 .cardBox .card:hover .cardName,
@@ -478,4 +477,9 @@ body {
     right: 0;
     left: initial;
   }
+}
+
+#save-event {
+  background-color: "#BF324C" !important;
+  background: "#BF324C" !important;
 }

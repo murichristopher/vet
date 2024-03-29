@@ -1,49 +1,215 @@
 <div data-controller="calendar">
-  <!-- External Events -->
-  <div id="external-events">
-    <form id="event-form" data-action="calendar#saveEvent">
-      <input type="text" placeholder="Event Name" data-calendar-target="eventName" required />
-      <input type="color" data-calendar-target="eventColor" required />
-      <button type="submit">Add Event</button>
-    </form>
-  </div>
   <!-- Calendar -->
   <div id="calendar-container">
     <div id="calendar" data-calendar-target="calendar"></div>
   </div>
+  <!-- Event Modal -->
   <div class="modal fade" id="event-modal" tabindex="-1" role="dialog" aria-labelledby="eventModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="eventModalLabel">New Event</h5>
+          <h5 class="modal-title" id="eventModalLabel">Novo Evento</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
-          <form id='form'>
+          <form id='modal-form'>
             <div class="form-group">
-              <label for="event-name-modal">Event Name</label>
-              <input type="text" class="form-control" id="event-name-modal" data-calendar-target="eventNameModal" placeholder="Enter event name">
+              <label for="event-name-modal">Nome do Evento</label>
+              <input type="text" class="form-control" id="event-name-modal" data-calendar-target="eventNameModal" placeholder="Digite o nome do evento">
             </div>
-            <div class="form-group">
-              <label for="event-color-modal">Event Color</label>
-              <input type="color" class="form-control" id="event-color-modal" data-calendar-target="eventColorModal">
-            </div>
-            <input type="hidden" id="event-date" data-calendar-target="eventDate">
           </form>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary"  id="save-event">Save Event</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+          <button type="button" class="btn btn-primary" id="save-event">Salvar Evento</button>
         </div>
       </div>
     </div>
   </div>
-  <button type="button" data-action="click->calendar#saveCalendarState">Save Calendar</button>
-  <style>
+  <button type="button" data-action="click->calendar#saveCalendarState" class="save-calendar-btn">Salvar Calendário</button>
+</div>
+<style>
+  /* Calendar and Event Form Styling */
+  #calendar-container {
+    margin: auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+  }
+
+  #external-events {
+    text-align: center;
+    padding: 20px;
+    margin-bottom: 20px;
+    background-color: #e9ecef;
+    border-radius: 8px;
+  }
+
+  .event-input, #modal-form .form-control {
+    border-radius: 20px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+
+  .add-event-btn, .save-calendar-btn, .btn-primary {
+    background-color: #007bff;
+    border: none;
+    padding: 10px 20px;
+    color: white;
+    border-radius: 20px;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+
+  .add-event-btn:hover, .save-calendar-btn:hover, .btn-primary:hover {
+    background-color: #0056b3;
+  }
+
+  .event-color-picker {
+    padding: 5px;
+    border-radius: 5px;
+  }
+
+  /* Modal Styling */
+  .modal-content {
+    border-radius: 8px;
+  }
+
+  .modal-header, .modal-footer {
+    border-bottom: none;
+    border-top: none;
+  }
+
+  .close {
+    color: #000;
+    opacity: 1;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
     #calendar-container {
-      max-width: 80vw; /* Adjust this value as needed */
-      margin: auto; /* Center align the calendar */
+      max-width: 95%;
+      padding: 10px;
     }
-  </style>
+
+    .event-input, .event-color-picker, #modal-form .form-control, .add-event-btn, .save-calendar-btn, .btn-primary {
+      width: 100%;
+    }
+  }
+
+
+  <style>
+  /* General Container */
+  #calendar-container {
+    max-width: 1000px;
+    margin: 30px auto;
+    padding: 15px;
+    background-color: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  }
+
+  /* FullCalendar Customization */
+  .fc {
+    color: #333;
+    border: none;
+  }
+
+  .fc-toolbar-title {
+    font-size: 24px;
+    color: #333;
+    font-weight: 300;
+  }
+
+  .fc-button {
+    background-color: #f8f9fa;
+    color: #333;
+    border: 1px solid #ccc;
+    padding: 5px 10px;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 14px;
+  }
+
+  .fc-button:hover {
+    background-color: #e9ecef;
+  }
+
+  .fc-button-primary {
+    background-color: #007bff;
+    color: #fff;
+    border-color: #007bff;
+  }
+
+  .fc-button-primary:not(:disabled).fc-button-active, .fc-button-primary:not(:disabled):active {
+    background-color: #0056b3;
+    border-color: #0056b3;
+  }
+
+  .fc-event {
+    background-color: #007bff;
+    border-color: #007bff;
+    color: #fff;
+    border-radius: 4px;
+    padding: 2px 5px;
+    cursor: pointer;
+  }
+
+  .fc-event:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+  }
+
+  .fc-daygrid-event-dot {
+    margin-right: 5px;
+  }
+
+  /* Event Modal Customization */
+  .modal-content {
+    border-radius: 8px;
+  }
+
+  .modal-header, .modal-footer {
+    border-bottom: none;
+    border-top: none;
+  }
+
+  .modal-header {
+    border-bottom: 1px solid #e9ecef;
+  }
+
+  .close {
+    color: #333;
+    opacity: 1;
+  }
+
+  /* Responsive Adjustments */
+  @media (max-width: 768px) {
+    #calendar-container {
+      padding: 10px;
+    }
+
+    .fc-toolbar-title {
+      font-size: 20px;
+    }
+  }
+
+  .fc-timegrid-event-harness {
+    background-color: red !important;
+  }
+
+  #calendar-container {
+  margin: auto;
+  padding: 12px;
+  padding: 20px;
+  background-color: #f0f4f7; /* New background color */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  }
+</style>
