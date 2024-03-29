@@ -1,0 +1,36 @@
+<div class="card" id="pets-card">
+  <div>
+    <div class="numbers">
+      <ion-icon name="paw-outline"></ion-icon> <%= Pet.count %>
+    </div>
+  </div>
+  <div class="card-text">
+    <p>Pets</p>
+  </div>
+  <div class="iconBx d-flex" style="gap:0.9em; align-itens:center; justify-content:center;">
+    <p class="card-text">
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newEntityModal">
+        <i class="fa-solid fa-plus"></i>
+      </button>
+    </p>
+    <p class="card-text">
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#searchModal">
+        <i class="fa-solid fa-magnifying-glass" style="font-size: 16px;"></i>
+      </button>
+    </p>
+  </div>
+</div>
+<%= render 'pets/modal_form'%>
+<div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="searchModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="searchModalLabel">Pesquisar Pet</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <%= render 'pets/search'%>
+      </div>
+    </div>
+  </div>
+</div>

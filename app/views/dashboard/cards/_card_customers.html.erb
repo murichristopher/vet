@@ -1,0 +1,16 @@
+<div class="card" id="customers-card">
+  <div>
+    <div class="numbers"><ion-icon name="person-outline"></ion-icon> <%= Customer.count %></div>
+  </div>
+  <div class="card-text">
+    <p>Tutores</p>
+  </div>
+  <div class="iconBx d-flex" style="gap:0.9em; align-itens:center; justify-content:center;">
+    <%= button_to new_customer_path, method:"get", class:"btn btn-primary" do %>
+      <i class="fa-solid fa-plus"></i>
+    <% end %>
+    <%= button_to customers_path, method:"get", class:"btn btn-primary" do %>
+      <i class="fa-solid fa-magnifying-glass"></i>
+    <% end %>
+  </div>
+</div>

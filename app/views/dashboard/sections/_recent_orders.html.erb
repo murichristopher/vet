@@ -1,0 +1,26 @@
+<div class="recentOrders">
+  <div class="cardHeader">
+    <h2>Esteira de atendimento</h2>
+    <%= link_to service_order_service_queue_items_path(1), class: 'btn' do %>
+      Acessar
+    <% end %>
+  </div>
+  <table>
+    <tr>
+      <thead>
+        <td>Tutor</td>
+        <td>Pet</td>
+        <td>Status</td>
+      </tr>
+    </thead>
+    <tbody>
+      <% @service_queue_items.each do |sqi| %>
+        <tr>
+          <td><%= sqi.customer.full_name %></td>
+          <td><%= sqi.pet&.name  %></td>
+          <td><span class="status delivered">Delivered</span></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
