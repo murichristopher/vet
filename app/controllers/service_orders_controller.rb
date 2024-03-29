@@ -14,6 +14,10 @@ class ServiceOrdersController < ApplicationController
   # GET /service_orders/new
   def new
     @service_order = ServiceOrder.new
+
+    @service_order.pet_id = params["pet_id"]
+
+    @service_order.customer_id = params["customer_id"]
   end
 
   # GET /service_orders/1/edit

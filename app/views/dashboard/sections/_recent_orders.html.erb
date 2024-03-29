@@ -1,26 +1,38 @@
-<div class="recentOrders">
-  <div class="cardHeader">
-    <h2>Esteira de atendimento</h2>
-    <%= link_to service_order_service_queue_items_path(1), class: 'btn' do %>
+<div class="card recentCustomers">
+  <div class="cardHeader d-flex justify-content-between align-items-start">
+    <h2 class="mb-0">Esteira de atendimento</h2>
+    <%= link_to service_order_service_queue_items_path(1), class: 'btn btn-primary' do %>
       Acessar
     <% end %>
   </div>
-  <table>
-    <tr>
+  <div class="table-responsive d-flex justify-content-center align-items-center">
+    <table class="table">
       <thead>
-        <td>Tutor</td>
-        <td>Pet</td>
-        <td>Status</td>
-      </tr>
-    </thead>
-    <tbody>
-      <% @service_queue_items.each do |sqi| %>
         <tr>
-          <td><%= sqi.customer.full_name %></td>
-          <td><%= sqi.pet&.name  %></td>
-          <td><span class="status delivered">Delivered</span></td>
+          <th scope="col">Tutor</th>
+          <th scope="col">Pet</th>
+          <th scope="col">Status</th>
+          <th scope="col">Urgente?</th>
+          <th scope="col">Comandas</th>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+        <% @service_queue_items.each do |sqi| %>
+          <tr>
+            <td><%= sqi.customer.full_name %></td>
+            <td><%= sqi.pet&.name %></td>
+            <td><span class="badge <%= sqi ? 'bg-success' : 'bg-warning' %>"><%= sqi ? 'Entregue' : 'Pendente' %></span></td>
+            <td><%= sqi.urgency? ? 'Sim' : 'Não' %></td>
+            <td>
+              <%= link_to service_order_path(sqi), class: 'btn btn-primary px-4' do %>
+                <span class="icon">
+                  <ion-icon name="clipboard-outline"></ion-icon>
+                </span>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 </div>

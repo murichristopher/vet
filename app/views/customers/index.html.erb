@@ -1,19 +1,67 @@
 <% content_for :item do %>
-  <%= link_to "Novo tutor", new_customer_path, class: "btn btn-success" %>
+  <div class="d-flex justify-content-between align-items-center ">
+    <h1>Tutores</h1>
+    <%= render 'search', search_term: params[:search] %>
+    <div class='d-flex gap-2 justify-content-center align-items-center'>
+      <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#newEntityModal">
+        <i class="bi bi-plus-lg"></i> Novo Tutor
+      </button>
+      <%= link_to :back, class: "btn btn-secondary d-flex align-items-center gap-2" do %>
+        <i class="bi bi-arrow-left"></i> Voltar
+      <% end %>
+    </div>
+  </div>
 <% end %>
-<p class="text-success"><%= notice %></p>
-<div class="container p-5">
-  <h1 class="mb-3">Tutores</h1>
-  <div id="customers" class="row">
-    <% @customers.each do |customer| %>
-      <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
-        <div class="card h-100">
-          <%= render customer %>
-          <div class="card-footer">
-            <%= link_to "Mostrar o tutor", customer, class: "btn btn-primary" %>
+<div class="column" id="customers">
+  <% if @customers.empty? && params[:search].present? %>
+    <div class="text-center my-5">
+      <i class="bi bi-search" style="font-size: 2rem;"></i>
+      <h2>Nenhum resultado encontrado para: <%= truncate(params[:search], length: 10) %></h2>
+      <p>Sua busca não retornou nenhum tutor. Por favor, tente outros termos.</p>
+    </div>
+  <% elsif @customers.empty? %>
+    <div class="text-center my-5">
+      <i class="bi bi-exclamation-triangle" style="font-size: 2rem;"></i>
+      <h2>Nenhum Tutor Cadastrado</h2>
+      <p>Atualmente não há customers cadastrados no sistema.</p>
+    </div>
+  <% else %>
+    <div class="column" id="customers">
+      <% @customers.each do |customer| %>
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12 mb-4">
+          <div class="card h-100">
+            <div class="card-body d-flex justify-content-between">
+              <div class="d-flex gap-3 align-items-center">
+                <%= image_tag 'no-image.png', size: "100x100" %>
+                <div>
+                  <h6 class="card-title"><%= customer.full_name %></h6>
+                  <p class="card-text">
+                    <strong>CPF:</strong> <%= customer.registry_code %><br>
+                  </p>
+                </div>
+              </div>
+              <div class="d-flex justify-content-center align-items-center gap-2">
+                <%= link_to 'Detalhes', customer_path(customer), class: "btn btn-primary h-50" %>
+                <%= link_to 'Criar comanda', new_service_order_path(customer_id: customer.id), class: "btn btn-outline-primary h-50" %>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    <% end %>
-  </div>
+      <% end %>
+    </div>
+  <% end %>
 </div>
+<%= render "modal_form", customer: @customer %>
+<script>
+  document.getElementById('deleteCustomerModal').addEventListener('show.bs.modal', function (event) {
+    const button = event.relatedTarget; // Button that triggered the modal
+    const customerId = button.getAttribute('data-customer-id'); // Extract info from data-* attributes
+    const confirmButton = document.getElementById('delete-customer-confirm-btn');
+    confirmButton.form.action = `/customers/${customerId}`; // Update the form's action
+  });
+</script>
+<style>
+  .image {
+    height: 10rem; /* Adjust the height value as needed */
+  }
+</style>

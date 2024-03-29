@@ -1,38 +1,91 @@
-<%= form_with(model: service_order) do |form| %>
-  <% if service_order.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(service_order.errors.count, "error") %> prohibited this service_order from being saved:</h2>
-
+<%= form_with(model: @service_order, html: { class: 'needs-validation', novalidate: true }) do |form| %>
+  <% if @service_order.errors.any? %>
+    <div id="error_explanation" class="alert alert-danger" role="alert">
+      <i class="bi bi-exclamation-triangle-fill me-2"></i>
+      <strong><%= pluralize(@service_order.errors.count, "error") %> errors prevented this service order from being saved:</strong>
       <ul>
-        <% service_order.errors.each do |error| %>
-          <li><%= error.full_message %></li>
+        <% @service_order.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
         <% end %>
       </ul>
     </div>
   <% end %>
-
-  <div>
-    <div class="field form-group">
-      <%= form.label :customer_id, "Tutor", class: 'form-label' %>
-      <%= form.collection_select :customer_id, Customer.all, :id, :full_name, {include_blank: true}, {class: 'form-select'} %>
-    </div>
-     <div class="field form-group">
-      <%= form.label :pet_id, "Pet", class: 'form-label' %>
-      <%= form.collection_select :pet_id, Pet.all, :id, :name, {include_blank: true}, {class: 'form-select'} %>
-    </div>
-    <div class="field form-group">
-      <%= form.label :descripton, "Descrição", class: 'form-label' %>
-      <%= form.text_field :descripton %>
-    </div>
-   <div class="field form-group">
-      <%= form.label :inventory_item_id, "Produto", class: 'form-label' %>
-      <%= form.collection_select :inventory_item_id, InventoryItem.all, :id, :name, {include_blank: true}, {class: 'form-select'} %>
-    </div>
+  <div class="mb-3">
+    <!-- Hidden field for customer_id -->
+    <%= form.hidden_field :customer_id %>
+    <!-- Display the customer's name for reference -->
+    <%= form.label :customer_id, "Tutor", class: 'form-label' %>
+    <p class="form-control-plaintext"><%= Customer.find(@service_order.customer_id).full_name if @service_order.customer_id %></p>
   </div>
-
-  <div>
-    <%= form.submit "Salvar" %>
+  <div class="mb-3">
+    <%= form.label :pet_id, "Pet", class: 'form-label' %>
+    <%= form.collection_select :pet_id, Pet.where(customer_id: @service_order.customer_id), :id, :name, {include_blank: true}, {class: 'form-select'} %>
   </div>
-
-
+  <div class="mb-3">
+    <%= form.label 'Descrição', class: 'form-label' %>
+    <%= form.text_area :description, class: 'form-control', rows: 3 %>
+  </div>
+  <div class="mb-3">
+    <%= form.label :inventory_item_id, "Produto", class: 'form-label' %>
+    <%= form.select :inventory_item_id, InventoryItem.all.collect { |item| [item.name, item.id, {'data-price' => item.price}] }, {include_blank: true}, {class: 'form-select', id: 'product_select'} %>
+  </div>
+  <div class="text-end mb-3">
+    <%= form.submit "Adicionar", class: "btn btn-primary" %>
+    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+  </div>
 <% end %>
+<div id="price_display" class="mt-3">
+  <strong>Preço Total: </strong><span id="total_price">0</span>
+</div>
+<script>
+  var productSelect = document.getElementById('product_select');
+  var priceDisplay = document.getElementById('total_price');
+
+  productSelect.addEventListener('change', function() {
+    var selectedOption = this.options[this.selectedIndex];
+    var price = selectedOption.getAttribute('data-price') || '0';
+    priceDisplay.textContent = price;
+  });
+</script>
+<style>
+  #error_explanation {
+    background-color: #f8d7da;
+    color: #842029;
+    border-color: #f5c2c7;
+    padding: 1rem;
+    margin-bottom: 20px;
+    border-radius: 5px;
+  }
+
+  #error_explanation ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  #error_explanation ul li {
+    margin-bottom: 10px;
+  }
+
+  .form-control-plaintext {
+    background-color: #f8f9fa;
+    padding: 10px;
+    border-radius: 5px;
+  }
+
+  #price_display {
+    background-color: #e2e3e5;
+    border-left: 5px solid #0d6efd;
+    padding: 10px;
+    margin-top: 20px;
+    border-radius: 5px;
+  }
+
+  .form-label {
+    font-weight: bold;
+  }
+
+  .btn-primary {
+    margin-right: 5px;
+  }
+</style>

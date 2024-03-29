@@ -43,7 +43,7 @@
               </div>
               <div class="d-flex justify-content-center align-items-center gap-2">
                 <%= link_to 'Detalhes', pet_path(pet), class: "btn btn-primary h-50" %>
-                <%= link_to 'Criar comanda', new_customer_path(pet_id: pet.id), class: "btn btn-outline-primary h-50" %>
+                <%= link_to 'Criar comanda', new_service_order_path(pet_id: pet.id, customer_id: pet.customer.id), class: "btn btn-outline-primary h-50" %>
               </div>
             </div>
           </div>
