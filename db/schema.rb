@@ -114,7 +114,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_29_201343) do
     t.integer "status"
     t.boolean "urgency"
     t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "updated_at", null: falsej
     t.index ["customer_id"], name: "index_service_queue_items_on_customer_id"
     t.index ["pet_id"], name: "index_service_queue_items_on_pet_id"
   end
